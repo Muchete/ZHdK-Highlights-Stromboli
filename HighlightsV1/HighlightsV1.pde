@@ -1,10 +1,16 @@
-ArrayList<Line> lineList = new ArrayList<Line>();
 
-int intervall = 1,
-	lastTime;
+//SETTINGS: 
+
+int intervall = 1;
+
+//REQUIREMENTS:
+
+int lastTime;
+
 PVector target = new PVector(),
 	origin = new PVector();
 
+ArrayList<Line> lineList = new ArrayList<Line>();
 
 void setup() {
   size(1000, 1000);
@@ -25,7 +31,7 @@ void draw() {
 
 	if (millis() > lastTime + intervall*1000){
 		lastTime = millis();
-		setLines();
+		generateLine();
 	}
 
 	for (Line aLine : lineList) {
@@ -33,7 +39,7 @@ void draw() {
 	}
 }
 
-void setLines(){
+void generateLine(){
 	Line newestLine = lineList.get(lineList.size() - 1);
 	newestLine.fix();
 

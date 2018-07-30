@@ -1,10 +1,14 @@
 class Line { 
-  	PVector _origin,
-  		_target;
 
+	//SETTINGS:
+
+	float _randomness = 45;
+  	int _stepLimit = 30;
+
+  	//REQUIREMENTS
+
+  	PVector _origin, _target;
   	boolean _fixed = false;
-  	float _randomness = 45;
-  	int _stepLimit = 50;
 
   	Line (PVector v) {  
   		_origin = v;
@@ -30,7 +34,8 @@ class Line {
 
   		if (!_fixed){
   			setTarget(mouseX, mouseY);
+  		} else {
+  			line(_origin.x, _origin.y, _target.x, _target.y);
   		}
-  		line(_origin.x, _origin.y, _target.x, _target.y);
   	} 
 } 
