@@ -3,6 +3,7 @@
 
 int intervall = 1;
 
+
 //REQUIREMENTS:
 
 int lastTime;
@@ -10,7 +11,7 @@ int lastTime;
 PVector target = new PVector(),
 	origin = new PVector();
 
-ArrayList<Line> lineList = new ArrayList<Line>();
+ArrayList<Stone> stoneList = new ArrayList<Stone>();
 
 void setup() {
   size(1000, 1000);
@@ -19,9 +20,10 @@ void setup() {
 
   origin.set(width / 2, height / 2);
 
-  lineList.add( new Line(origin));
+  stoneList.add( new Stone(origin));
 
   lastTime = millis();
+
 }
 
 void draw() {
@@ -34,14 +36,15 @@ void draw() {
 		generateLine();
 	}
 
-	for (Line aLine : lineList) {
-		aLine.drawLine();
+	for (Stone aLine : stoneList) {
+		stroke(0);
+		aLine.drawStone();
 	}
 }
 
 void generateLine(){
-	Line newestLine = lineList.get(lineList.size() - 1);
-	newestLine.fix();
+	Stone newestStone = stoneList.get(stoneList.size() - 1);
+	newestStone.fix();
 
-	lineList.add( new Line(newestLine._target));
+	stoneList.add( new Stone(newestStone._target));
 }
