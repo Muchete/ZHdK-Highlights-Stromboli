@@ -10,12 +10,15 @@ class StoneLine {
 	PVector _myTarget;
 	PVector _origin;
 	boolean active = true;
+	boolean hasBranch = false;
+	int branchCount = 0;
 	Stone newestStone;
 	ArrayList<Stone> stoneList = new ArrayList<Stone>();
 
 	StoneLine (PVector o, int id) {
 		_origin = o;
-		stoneList.add( new Stone(_origin)); //create first stone
+		newestStone = new Stone(_origin);
+		stoneList.add(newestStone); //create first stone
 		lastTime = millis();
 		_targetId = id;
 	}
