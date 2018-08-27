@@ -86,7 +86,7 @@ class LineHandler {
 	void addLine() {
 
 		if (allLines.size() == 0) {
-			allLines.add(new StoneLine(origin, allTargets.size() - 1));
+			allLines.add(new StoneLine(origin, origin, allTargets.size() - 1));
 		} else {
 
 			PVector newTarget = allTargets.get(allTargets.size() - 1);
@@ -118,7 +118,7 @@ class LineHandler {
 				println("DOING BRANCH!");
 				createBranch(closestBranchLine, stoneIndex, allTargets.size() - 1);
 			} else {
-				allLines.add(new StoneLine(origin, allTargets.size() - 1));
+				allLines.add(new StoneLine(origin, origin, allTargets.size() - 1));
 			}
 		}
 	}
@@ -130,7 +130,7 @@ class LineHandler {
 		//set branch stone to branched:
 		allLines.get(branchIndex).stoneList.get(stoneIndex).isBranchStone = true;
 
-		StoneLine newLine = new StoneLine(branchOrigin, t);
+		StoneLine newLine = new StoneLine(origin, branchOrigin, t);
 		newLine.isBranchLine = true;
 
 		allLines.add(newLine);
@@ -177,7 +177,7 @@ class LineHandler {
 				assignTarget(closestLine, t);
 			} else {
 				//if origin was closer, create new line
-				allLines.add(new StoneLine(origin, t));
+				allLines.add(new StoneLine(origin, origin, t));
 			}
 		}
 	}

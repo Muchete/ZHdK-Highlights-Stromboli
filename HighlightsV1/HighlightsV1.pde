@@ -26,7 +26,7 @@ void draw() {
 
 //for debugging only
 void mouseClicked() {
-	allTargets.add(new PVector(mouseX, mouseY));
+	allTargets.add(new PVector(mouseX, mouseY, 0));
 	println("added Target Nr. "+allTargets.size()+"!");
 	println("allTargets: "+allTargets);
 }

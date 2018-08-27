@@ -5,19 +5,22 @@ class StoneLine {
 	float targetTolerance = 5;
 
 	//REQUIREMENTS
+
 	int lastTime;
 	int _targetId;
 	PVector _myTarget;
 	PVector _origin;
+	PVector tOrigin;
 	boolean active = true;
 	boolean isBranchLine = false;
 	boolean empty = false;
 	Stone newestStone;
 	ArrayList<Stone> stoneList = new ArrayList<Stone>();
 
-	StoneLine (PVector o, int id) {
+	StoneLine (PVector t, PVector o, int id) {
+		tOrigin = t;
 		_origin = o;
-		newestStone = new Stone(_origin);
+		newestStone = new Stone(tOrigin, _origin);
 		stoneList.add(newestStone); //create first stone
 		lastTime = millis();
 		_targetId = id;
@@ -50,14 +53,14 @@ class StoneLine {
 
 	void newStone() {
 		if (stoneList.size() == 0) {
-			stoneList.add( new Stone(_origin));
+			stoneList.add( new Stone(tOrigin, _origin));
 		} else {
 			newestStone = stoneList.get(stoneList.size() - 1); //get latest stone
 
 			//if hasn't reached target yet
 			if (PVector.dist(newestStone._target, _myTarget) > targetTolerance) {
 				newestStone.fix(); //make latest stone solid
-				stoneList.add( new Stone(newestStone._target)); //create new unsolid & invisible stone
+				stoneList.add( new Stone(tOrigin, newestStone._target)); //create new unsolid & invisible stone
 			}
 		}
 	}
