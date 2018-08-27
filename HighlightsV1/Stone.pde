@@ -2,18 +2,15 @@ class Stone {
 
 	//SETTINGS:
 
-	float _randomness = 45;
+	 float _randomness = 45;
   	float _stepLimit = 30;
   	float _stepMinimum = 10;
 
-  	int _alpha = 255;
-
+  	float _alpha = 255;
 
   	//REQUIREMENTS
 
-
   	float _mag;
-
   	PVector _origin, _target, _step, _centerPoint;
   	boolean _fixed = false;
 
@@ -41,12 +38,13 @@ class Stone {
   		_fixed = true;
   	}
 
-  	void drawStone() {
+  	void drawStone(PVector targ) {
 
-  		if (!_fixed){
-  			setTarget(mouseX, mouseY);
+  		if (!_fixed){ //dont draw until fixed
+  			setTarget(targ.x, targ.y);
   		} else {
-  			stroke(255, 0, 0, _alpha);
+        noStroke();
+  			fill(255, 0, 0, _alpha);
 
   			ellipse(_centerPoint.x, _centerPoint.y, _mag, _mag);
 

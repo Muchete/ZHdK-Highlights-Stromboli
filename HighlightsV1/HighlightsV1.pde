@@ -1,50 +1,42 @@
 
-//SETTINGS: 
-
-int intervall = 1;
-
+//SETTINGS:
+PVector ultimateOrigin = new PVector(500, 500); //physical stone position
 
 //REQUIREMENTS:
+LineHandler lineHandler;
+ArrayList<PVector> allTargets = new ArrayList<PVector>();
 
-int lastTime;
-
-PVector target = new PVector(),
-	origin = new PVector();
-
-ArrayList<Stone> stoneList = new ArrayList<Stone>();
+//------------------------------------------------------------------
 
 void setup() {
-  size(1000, 1000);
+	size(1000, 1000);
 
-  background(255);
-
-  origin.set(width / 2, height / 2);
-
-  stoneList.add( new Stone(origin));
-
-  lastTime = millis();
-
+	//set origin of "first stone"
+	lineHandler = new LineHandler(ultimateOrigin);
 }
 
 void draw() {
-	background(255, 0);
-
-	target.set(mouseX, mouseY);
-
-	if (millis() > lastTime + intervall*1000){
-		lastTime = millis();
-		generateLine();
-	}
-
-	for (Stone aLine : stoneList) {
-		stroke(0);
-		aLine.drawStone();
-	}
+	background(255, 120);
+	lineHandler.update(allTargets);
 }
 
-void generateLine(){
-	Stone newestStone = stoneList.get(stoneList.size() - 1);
-	newestStone.fix();
 
-	stoneList.add( new Stone(newestStone._target));
+
+
+
+//for debugging only
+void mouseClicked() {
+	allTargets.add(new PVector(mouseX, mouseY));
+	println("added Target Nr. "+allTargets.size()+"!");
+	println("allTargets: "+allTargets);
+}
+
+//for debugging only
+void keyPressed(){
+	if (allTargets.size() > 0){
+		allTargets.remove(0);
+	}
+	println("removed Target!");
+	println("allTargets: "+allTargets);
+	
 }
