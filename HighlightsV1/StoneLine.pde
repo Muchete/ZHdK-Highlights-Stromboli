@@ -26,7 +26,7 @@ class StoneLine {
 	void update(ArrayList<PVector> l) {
 
 		//update target if target list is not empty
-		if (active){
+		if (active) {
 			_myTarget = l.get(_targetId);
 		}
 
@@ -40,7 +40,7 @@ class StoneLine {
 			}
 		}
 
-		if (!empty){
+		if (!empty) {
 			//draws all the stones
 			for (Stone aStone : stoneList) {
 				aStone.drawStone(_myTarget);
@@ -49,23 +49,23 @@ class StoneLine {
 	}
 
 	void newStone() {
-		if (stoneList.size() == 0){
+		if (stoneList.size() == 0) {
 			stoneList.add( new Stone(_origin));
 		} else {
 			newestStone = stoneList.get(stoneList.size() - 1); //get latest stone
-				
+
 			//if hasn't reached target yet
-			if (PVector.dist(newestStone._target, _myTarget) > targetTolerance){
+			if (PVector.dist(newestStone._target, _myTarget) > targetTolerance) {
 				newestStone.fix(); //make latest stone solid
-				stoneList.add( new Stone(newestStone._target)); //create new unsolid & invisible stone	
-			}			
+				stoneList.add( new Stone(newestStone._target)); //create new unsolid & invisible stone
+			}
 		}
 	}
 
 	void decayStone() {
-		if (stoneList.size() > 0){
+		if (stoneList.size() > 0) {
 			//check if stone is branched.
-			if (!stoneList.get(stoneList.size() - 1).isBranchStone){
+			if (!stoneList.get(stoneList.size() - 1).isBranchStone) {
 				stoneList.remove(stoneList.size() - 1); //get latest stone
 			}
 		} else {
@@ -74,11 +74,11 @@ class StoneLine {
 		}
 	}
 
-	void assignId(int id){
+	void assignId(int id) {
 		_targetId = id;
 	}
 
-	void deactivate(){
+	void deactivate() {
 		active = false;
 	}
 

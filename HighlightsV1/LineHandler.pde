@@ -58,7 +58,7 @@ class LineHandler {
 						}
 					}
 
-					//other Branches should be one
+					//if only one branch was created from this stone, remove decay-block
 					if (otherBranches == 1) {
 						thisBranchStone.isBranchStone = false;
 					}
