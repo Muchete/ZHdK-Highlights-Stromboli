@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 class Stone { 
 
     //SETTINGS:
@@ -167,4 +166,3 @@ class Stone {
 		}
 	}
 }
->>>>>>> parent of ce446d4... prepared collision detection

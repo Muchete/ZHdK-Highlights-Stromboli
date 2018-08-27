@@ -27,10 +27,6 @@ void draw() {
 	lineHandler.update(allTargets);
 }
 
-
-
-
-
 //for debugging only
 void mouseClicked() {
 	allTargets.add(new PVector(mouseX, mouseY));

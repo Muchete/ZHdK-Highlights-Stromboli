@@ -66,8 +66,6 @@ class LineHandler {
 		}
 	}
 
-<<<<<<< HEAD
-=======
 	void addLine() {
 
 		if (allLines.size() == 0) {
@@ -124,7 +122,6 @@ class LineHandler {
 	void branchKiller() {
 
 	}
->>>>>>> parent of ce446d4... prepared collision detection
 
 	void reAssignTargets() {
 
@@ -158,10 +155,8 @@ class LineHandler {
 			if (PVector.dist(allLines.get(closestLine).newestStone._target, thisTarget) <= firstDistance) {
 				assignTarget(closestLine, t);
 			} else {
-<<<<<<< HEAD
-=======
+
 				//if origin was closer, create new line
->>>>>>> parent of ce446d4... prepared collision detection
 				allLines.add(new StoneLine(origin, t));
 			}
 		}
