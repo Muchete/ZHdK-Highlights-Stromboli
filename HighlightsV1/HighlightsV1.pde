@@ -1,16 +1,10 @@
 
 //SETTINGS:
-PVector ultimateOrigin = new PVector(500, 500); //physical stone position
+PVector ultimateOrigin = new PVector(500, 500, 100); //physical stone position
 
 //REQUIREMENTS:
 LineHandler lineHandler;
 ArrayList<PVector> allTargets = new ArrayList<PVector>();
-
-//3D SCENE PARAMETERS
-int x_size = 150;
-int y_size = 100;
-int z_size = 100;
-int radius = 200;
 
 //------------------------------------------------------------------
 
@@ -23,13 +17,16 @@ void setup() {
 
 void draw() {
 	background(255, 120);
-
 	lineHandler.update(allTargets);
 }
 
+
+
+
+
 //for debugging only
 void mouseClicked() {
-	allTargets.add(new PVector(mouseX, mouseY));
+	allTargets.add(new PVector(mouseX, mouseY, 0));
 	println("added Target Nr. "+allTargets.size()+"!");
 	println("allTargets: "+allTargets);
 }
