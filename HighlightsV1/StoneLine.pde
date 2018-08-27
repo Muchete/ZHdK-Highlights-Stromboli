@@ -41,8 +41,21 @@ class StoneLine {
 		}
 
 		//draws all the stones
+		drawStoneLineMapping();
+	}
+
+	void drawStoneLine() {
+		//draws all the stones
 		for (Stone aStone : stoneList) {
 			aStone.drawStone(_myTarget);
+		}
+	}
+
+	void drawStoneLineMapping() {
+
+		//draws all the stones
+		for (Stone aStone : stoneList) {
+			aStone.drawMapping(_myTarget);
 		}
 	}
 

@@ -6,6 +6,12 @@ PVector ultimateOrigin = new PVector(500, 500); //physical stone position
 LineHandler lineHandler;
 ArrayList<PVector> allTargets = new ArrayList<PVector>();
 
+//3D SCENE PARAMETERS
+int x_size = 150;
+int y_size = 100;
+int z_size = 100;
+int radius = 200;
+
 //------------------------------------------------------------------
 
 void setup() {
@@ -17,6 +23,7 @@ void setup() {
 
 void draw() {
 	background(255, 120);
+
 	lineHandler.update(allTargets);
 }
 
