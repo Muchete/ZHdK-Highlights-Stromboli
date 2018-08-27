@@ -9,7 +9,7 @@ class Stone {
   	float _alpha = 255;
 
   	//REQUIREMENTS
-
+    boolean isBranchStone = false;
   	float _mag;
   	PVector _origin, _target, _step, _centerPoint;
   	boolean _fixed = false;

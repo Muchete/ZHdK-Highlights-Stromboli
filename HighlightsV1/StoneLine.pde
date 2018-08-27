@@ -1,7 +1,7 @@
 class StoneLine {
 
 	//SETTINGS:
-	int intervall = 1; //draw stone every X seconds
+	float intervall = 0.1; //draw stone every X seconds
 	float targetTolerance = 5;
 
 	//REQUIREMENTS
@@ -10,8 +10,8 @@ class StoneLine {
 	PVector _myTarget;
 	PVector _origin;
 	boolean active = true;
-	boolean hasBranch = false;
-	int branchCount = 0;
+	boolean isBranchLine = false;
+	boolean empty = false;
 	Stone newestStone;
 	ArrayList<Stone> stoneList = new ArrayList<Stone>();
 
@@ -40,9 +40,11 @@ class StoneLine {
 			}
 		}
 
-		//draws all the stones
-		for (Stone aStone : stoneList) {
-			aStone.drawStone(_myTarget);
+		if (!empty){
+			//draws all the stones
+			for (Stone aStone : stoneList) {
+				aStone.drawStone(_myTarget);
+			}
 		}
 	}
 
@@ -62,9 +64,13 @@ class StoneLine {
 
 	void decayStone() {
 		if (stoneList.size() > 0){
-			stoneList.remove(stoneList.size() - 1); //get latest stone
+			//check if stone is branched.
+			if (!stoneList.get(stoneList.size() - 1).isBranchStone){
+				stoneList.remove(stoneList.size() - 1); //get latest stone
+			}
 		} else {
-			//remove this list?
+			//remove this line
+			empty = true;
 		}
 	}
 
