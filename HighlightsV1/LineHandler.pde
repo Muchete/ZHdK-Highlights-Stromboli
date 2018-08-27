@@ -66,6 +66,65 @@ class LineHandler {
 		}
 	}
 
+<<<<<<< HEAD
+=======
+	void addLine() {
+
+		if (allLines.size() == 0) {
+			allLines.add(new StoneLine(origin, allTargets.size() - 1));
+		} else {
+
+			PVector newTarget = allTargets.get(allTargets.size() - 1);
+
+			float firstDistance = PVector.dist(newTarget, origin);
+			float closestDistance = firstDistance;
+			int closestBranchLine = 0;
+			int stoneIndex = 0;
+
+			for (int l = 0; l < allLines.size(); ++l) {
+				StoneLine thisLine = allLines.get(l);
+
+				//loop through all stones in stonelist
+				float closestBranchDist = PVector.dist(thisLine.stoneList.get(0)._target, newTarget);
+
+				for (int s = 1; s < thisLine.stoneList.size() - 1; ++s) {
+					float newDist = PVector.dist(thisLine.stoneList.get(s)._target, newTarget);
+					if (newDist < closestBranchDist) {
+						closestBranchDist = newDist;
+						stoneIndex = s;
+						closestBranchLine = l;
+					}
+				}
+			}
+
+			float bestStoneDist = PVector.dist(allLines.get(closestBranchLine).stoneList.get(stoneIndex)._target, newTarget);
+
+			if (bestStoneDist < PVector.dist(newTarget, origin)) {
+				println("DOING BRANCH!");
+				createBranch(closestBranchLine, stoneIndex, allTargets.size() - 1);
+			} else {
+				allLines.add(new StoneLine(origin, allTargets.size() - 1));
+			}
+		}
+	}
+
+	void createBranch(int branchIndex, int stoneIndex, int t) {
+
+		PVector branchOrigin = allLines.get(branchIndex).stoneList.get(stoneIndex)._target;
+
+		//set branch stone to branched:
+		allLines.get(branchIndex).stoneList.get(stoneIndex).isBranchStone = true;
+
+		StoneLine newLine = new StoneLine(branchOrigin, t);
+		newLine.isBranchLine = true;
+
+		allLines.add(newLine);
+	}
+
+	void branchKiller() {
+
+	}
+>>>>>>> parent of ce446d4... prepared collision detection
 
 	void reAssignTargets() {
 
@@ -99,6 +158,10 @@ class LineHandler {
 			if (PVector.dist(allLines.get(closestLine).newestStone._target, thisTarget) <= firstDistance) {
 				assignTarget(closestLine, t);
 			} else {
+<<<<<<< HEAD
+=======
+				//if origin was closer, create new line
+>>>>>>> parent of ce446d4... prepared collision detection
 				allLines.add(new StoneLine(origin, t));
 			}
 		}

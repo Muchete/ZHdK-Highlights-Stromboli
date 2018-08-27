@@ -60,7 +60,11 @@ class StoneLine {
 	}
 
 	void newStone() {
+<<<<<<< HEAD
 		if (stoneList.size() == 0){
+=======
+		if (stoneList.size() == 0) {
+>>>>>>> parent of ce446d4... prepared collision detection
 			stoneList.add( new Stone(_origin));
 		} else {
 			newestStone = stoneList.get(stoneList.size() - 1); //get latest stone
@@ -68,8 +72,13 @@ class StoneLine {
 			//if hasn't reached target yet
 			if (PVector.dist(newestStone._target, _myTarget) > targetTolerance){
 				newestStone.fix(); //make latest stone solid
+<<<<<<< HEAD
 				stoneList.add( new Stone(newestStone._target)); //create new unsolid & invisible stone	
 			}			
+=======
+				stoneList.add( new Stone(newestStone._target)); //create new unsolid & invisible stone
+			}
+>>>>>>> parent of ce446d4... prepared collision detection
 		}
 	}
 
