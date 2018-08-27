@@ -14,15 +14,17 @@ class Stone {
 	PVector _origin, _target, _step, _centerPoint;
 	boolean _fixed = false;
 
+	int surface = 0; //stores, on what surface of the box the stone currently is
+
 	Stone (PVector v) {
 		_origin = v;
 		_randomness = random(-_randomness, _randomness);
 		_stepLimit = random(_stepMinimum, _stepLimit);
 	}
 
-	void setTarget(float x, float y) {
+	void setTarget(PVector targ) {
 
-		_target = new PVector(x, y);
+		_target = targ;
 
 		_step = PVector.sub(_target, _origin);
 		_step.limit(_stepLimit);
@@ -41,7 +43,7 @@ class Stone {
 	void drawStone(PVector targ) {
 
 		if (!_fixed) { //dont draw until fixed
-			setTarget(targ.x, targ.y);
+			setTarget(targ);
 		} else {
 			noStroke();
 			fill(255, 0, 0, _alpha);
