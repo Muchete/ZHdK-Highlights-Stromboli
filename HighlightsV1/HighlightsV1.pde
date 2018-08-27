@@ -1,6 +1,6 @@
 
 //SETTINGS:
-PVector ultimateOrigin = new PVector(500, 500); //physical stone position
+PVector ultimateOrigin = new PVector(500, 500, 100); //physical stone position
 
 //REQUIREMENTS:
 LineHandler lineHandler;
