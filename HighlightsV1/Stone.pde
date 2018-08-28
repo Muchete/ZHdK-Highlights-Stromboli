@@ -62,10 +62,10 @@ class Stone {
 
 	void collisionDetection(){
 
-		float leftBorder = tableOrigin - tableWidth/2;
-		float rightBorder = tableOrigin + tableWidth/2;
-		float topBorder = tableOrigin - tableHeight/2;
-		float bottomBorder = tableOrigin + tableHeight/2;
+		float leftBorder = tableOrigin.x - tableWidth/2;
+		float rightBorder = tableOrigin.x + tableWidth/2;
+		float topBorder = tableOrigin.y - tableHeight/2;
+		float bottomBorder = tableOrigin.y + tableHeight/2;
 
 	switch (surface) {
 	case 0:
