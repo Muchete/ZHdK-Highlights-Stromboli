@@ -20,10 +20,40 @@ class LineHandler {
 		//if yes, reassign targets
 		updateLineTargets();
 
+		//creating background for the mapping images
+		drawMappingFields();
+
 		//update and draw all stonelines
 		for (StoneLine aLine : allLines) {
 			aLine.update(targets); //update with the assigned target
 		}
+	}
+
+	void drawMappingFields() {
+
+		background(255);
+
+		//draw mapping fields
+		noStroke();
+		
+		fill(0);
+		rectMode(CORNER);
+		rect(10, 10, 2 * x_size + 2 * y_size, z_size);
+
+		ellipseMode(CORNER);
+		ellipse(10, 10 + z_size + 10, radius * 2, radius * 2);
+		fill(255);
+		rectMode(CENTER);
+		rect(10 + radius, 10 + z_size + 10 + radius, x_size, y_size);
+
+		ellipseMode(CORNER);
+		stroke(0);
+		noFill();
+		ellipse(10 + 2 * radius + 10, 10 + z_size + 10, radius * 2, radius * 2);
+		fill(0);
+		noStroke();
+		rectMode(CENTER);
+		rect(10 + 3 * radius + 10, 10 + z_size + 10 + radius, x_size, y_size);
 	}
 
 	void removeEmptyLines() {

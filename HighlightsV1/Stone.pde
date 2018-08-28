@@ -119,4 +119,38 @@ class Stone {
 			line(_origin.x, _origin.y, _target.x, _target.y);
 		}
 	}
+
+	//draw the stones according to its position on the mapping fields
+	void drawMapping(PVector targ) {
+
+        if (!_fixed){ //dont draw until fixed
+            setTarget(targ);
+        } else {
+            noStroke();
+            fill(255, 0, 0, _alpha);
+
+            if (abs(_centerPoint.x - width/2) < x_size/2 && abs(_centerPoint.y - height/2) < y_size/2 ) {
+                pushMatrix();
+                translate(-width/2, -height/2);
+                translate(10 + 3 * radius + 10, 10 + z_size + 10 + radius);
+                ellipseMode(CENTER);
+                ellipse(_centerPoint.x, _centerPoint.y, _mag, _mag);
+
+                stroke(0, _alpha);
+                line(_origin.x, _origin.y, _target.x, _target.y);
+                popMatrix();
+            } 
+            else if (abs(_centerPoint.x - width/2) > x_size/2 || abs(_centerPoint.y - height/2) > y_size/2 ) {
+                pushMatrix();
+                translate(-width/2, -height/2);
+                translate(10 + radius, 10 + z_size + 10 + radius);
+                ellipseMode(CENTER);
+                ellipse(_centerPoint.x, _centerPoint.y, _mag, _mag);
+
+                stroke(0, _alpha);
+                line(_origin.x, _origin.y, _target.x, _target.y);
+                popMatrix();
+            }
+        }
+    }
 }
