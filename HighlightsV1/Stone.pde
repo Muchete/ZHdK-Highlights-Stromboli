@@ -6,7 +6,7 @@ class Stone {
 	float _stepMaximum = 25;
 	float _stepMinimum = 20;
 
-	float _alpha = 255;
+	float _alpha = 0.2;
 
 	//TABLE SETTINGS:
 	float leftBorder, rightBorder, topBorder, bottomBorder;
@@ -69,11 +69,11 @@ class Stone {
 		_target = PVector.add(_origin, _step);
 		_futureOrigin = _target.copy();
 
-		collisionDetection();
-
 		_step = PVector.sub(_target, _origin);
 		_mag = _step.mag();
 		_centerPoint = PVector.add(_origin, _step.div(2));
+
+		collisionDetection();
 
 		targetIsSet = true;
 	}
@@ -199,7 +199,7 @@ class Stone {
 					_futureOrigin.z = z_size;
 					_futureOrigin.y = _futureOrigin.y - dif;
 				} else if (_target.z < 0){
-					float dif = abs(_target.z - z_size);
+					float dif = abs(_target.z - 0);
 
 					_target.z = 0;
 					_futureOrigin.z = 0;
@@ -283,11 +283,31 @@ class Stone {
 	PVector rotateRandom(PVector v) {
 
 		if (axisBlock == 2) {
-			_step.rotate(radians(_randomness));
-		} else {
-
+			v.rotate(radians(_randomness));
+		} else if (axisBlock == 1){
+			v = rotateAroundY(v, radians(_randomness));
+		} else if (axisBlock == 0) {
+			v = rotateAroundX(v, radians(_randomness));
 		}
 
+		return v;
+	}
+
+	PVector rotateAroundX(PVector v, float theta){
+		float temp = v.y;
+		// Might need to check for rounding errors like with angleBetween function?
+
+		v.y = v.y * cos(theta) - v.z * sin(theta);
+		v.z = temp * sin(theta) + v.z * cos(theta);
+		return v;
+	}
+
+	PVector rotateAroundY(PVector v, float theta){
+		float temp = v.x;
+		// Might need to check for rounding errors like with angleBetween function?
+
+		v.x = v.x * cos(theta) + v.z * sin(theta);
+		v.z = -temp * sin(theta) + v.z * cos(theta);
 		return v;
 	}
 
@@ -332,8 +352,7 @@ class Stone {
 			setTarget(targ);
 		} else {
 			noStroke();
-			// fill(255, 0, 0, _alpha);
-			fill(map(_centerPoint.z, 0, 100, 0, 255), map(_centerPoint.z, 0, 100, 255, 0), 0, _alpha);
+			fill(255, 0, 0, _alpha);
 
 			if (_centerPoint.z == z_size) {
 				pushMatrix();
