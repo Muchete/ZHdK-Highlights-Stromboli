@@ -83,14 +83,130 @@ class Stone {
 		switch (axisBlock) {
 		case 0:
 			//if in x block
+			// if (_origin.x == leftBorder){
+			// 	//if on surface 2
+			// 	if (_target.z > tableZ){
+			// 		float dif = abs(_target.z - tableZ);
 
+			// 		_target.z = tableZ; 
+			// 		_futureOrigin.z = tableZ;
+			// 		_futureOrigin.x = _futureOrigin.x + dif;
+			// 	} else if (_target.z < 0){
+			// 		float dif = abs(_target.z - 0);
+
+			// 		_target.z = 0; 
+			// 		_futureOrigin.z = 0;
+			// 		_futureOrigin.x = _futureOrigin.x - dif;
+			// 	}
+
+			// 	if (_target.y > bottomBorder) {
+			// 		float dif = abs(_target.y - bottomBorder);
+
+			// 		_target.y = bottomBorder; 
+			// 		_futureOrigin.y = bottomBorder;
+			// 		_futureOrigin.x = _futureOrigin.x + dif;
+			// 	} else if (_target.y < topBorder){
+			// 		float dif = abs(topBorder - _target.y);
+
+			// 		_target.y = topBorder; 
+			// 		_futureOrigin.y = topBorder;
+			// 		_futureOrigin.x = _futureOrigin.x - dif;
+			// 	}
+
+			// } else if (_origin.x == rightBorder){
+			// 	//if on surface 4
+			// 	if (_target.z > tableZ){
+			// 		float dif = abs(_target.z - tableZ);
+
+			// 		_target.z = tableZ; 
+			// 		_futureOrigin.z = tableZ;
+			// 		_futureOrigin.x = _futureOrigin.x - dif;
+			// 	} else if (_target.z < 0){
+			// 		float dif = abs(_target.z - 0);
+
+			// 		_target.z = 0; 
+			// 		_futureOrigin.z = 0;
+			// 		_futureOrigin.x = _futureOrigin.x + dif;
+			// 	}
+
+			// 	if (_target.y > bottomBorder) {
+			// 		float dif = abs(_target.y - bottomBorder);
+
+			// 		_target.y = bottomBorder; 
+			// 		_futureOrigin.y = bottomBorder;
+			// 		_futureOrigin.x = _futureOrigin.x - dif;
+			// 	} else if (_target.y < topBorder){
+			// 		float dif = abs(topBorder - _target.y);
+
+			// 		_target.y = topBorder; 
+			// 		_futureOrigin.y = topBorder;
+			// 		_futureOrigin.x = _futureOrigin.x + dif;
+			// 	}
+			// }
 			break;
 		case 1:
 			//if in y block
+			// if (_origin.y == topBorder){
+			// 	//if on surface 3
+			// 	if (_target.z > tableZ){
+			// 		float dif = abs(_target.z - tableZ);
 
+			// 		_target.z = tableZ; 
+			// 		_futureOrigin.z = tableZ;
+			// 		_futureOrigin.y = _futureOrigin.y + dif;
+			// 	} else if (_target.z < 0){
+			// 		float dif = abs(_target.z - 0);
+
+			// 		_target.z = 0; 
+			// 		_futureOrigin.z = 0;
+			// 		_futureOrigin.y = _futureOrigin.y - dif;
+			// 	}
+
+			// 	if (_target.x < leftBorder){
+			// 		float dif = abs(_target.x - leftBorder);
+
+			// 		_target.x = leftBorder; 
+			// 		_futureOrigin.x = leftBorder;
+			// 		_futureOrigin.y = _futureOrigin.y + dif;
+			// 	} else if (_target.x > rightBorder){
+			// 		float dif = abs(_target.x - rightBorder);
+
+			// 		_target.x = rightBorder; 
+			// 		_futureOrigin.x = rightBorder;
+			// 		_futureOrigin.y = _futureOrigin.y + dif;
+			// 	}
+			// } else if (_origin.y == bottomBorder){
+			// 	//if on surface 1
+			// 	if (_target.z > tableZ){
+			// 		float dif = abs(_target.z - tableZ);
+
+			// 		_target.z = tableZ; 
+			// 		_futureOrigin.z = tableZ;
+			// 		_futureOrigin.y = _futureOrigin.y - dif;
+			// 	} else if (_target.z < 0){
+			// 		float dif = abs(_target.z - tableZ);
+
+			// 		_target.z = 0; 
+			// 		_futureOrigin.z = 0;
+			// 		_futureOrigin.y = _futureOrigin.y + dif;
+			// 	} 
+
+			// 	if (_target.x < leftBorder){
+			// 		float dif = abs(_target.x - leftBorder);
+
+			// 		_target.x = leftBorder; 
+			// 		_futureOrigin.x = leftBorder;
+			// 		_futureOrigin.y = _futureOrigin.y - dif;
+			// 	} else if (_target.x > rightBorder){
+			// 		float dif = abs(_target.x - rightBorder);
+
+			// 		_target.x = rightBorder; 
+			// 		_futureOrigin.x = rightBorder;
+			// 		_futureOrigin.y = _futureOrigin.y - dif;
+			// 	}
+			// }
 			break;
 		case 2:
-			//if in z block
 			if (_origin.z == tableZ) {
 				//if on table
 				if (_target.x > leftBorder && _target.x < rightBorder) {
@@ -128,44 +244,45 @@ class Stone {
 
 					}
 				}
-			} else if (_origin.z == 0){
-				//if on table
-				// if (_target.x > leftBorder && _target.x < rightBorder) {
-				// 	//vertical breach
-				// 	if (_target.y < bottomBorder) {
-				// 		float dif = abs(_target.y - bottomBorder);
+			} 
+			// else if (_origin.z == 0){
+				//if on floor
+			// 	if (_target.x > leftBorder && _target.x < rightBorder) {
+			// 		//vertical breach
+			// 		if (_target.y < bottomBorder) {
+			// 			float dif = abs(_target.y - bottomBorder);
 
-				// 		_target.y = bottomBorder; 
-				// 		_futureOrigin.y = bottomBorder;
-				// 		_futureOrigin.z = _futureOrigin.z + dif;
+			// 			_target.y = bottomBorder; 
+			// 			_futureOrigin.y = bottomBorder;
+			// 			_futureOrigin.z = _futureOrigin.z + dif;
 
-				// 	} else if (_target.y > topBorder){
-				// 		float dif = abs(topBorder - _target.y);
+			// 		} else if (_target.y > topBorder){
+			// 			float dif = abs(topBorder - _target.y);
 
-				// 		_target.y = topBorder; 
-				// 		_futureOrigin.y = topBorder;
-				// 		_futureOrigin.z = _futureOrigin.z + dif;
+			// 			_target.y = topBorder; 
+			// 			_futureOrigin.y = topBorder;
+			// 			_futureOrigin.z = _futureOrigin.z + dif;
 
-				// 	}
-				// } else if (_target.y > topBorder && _target.y < bottomBorder) {
-				// 	//horizontal breach!
-				// 	if (_target.x < rightBorder){
-				// 		float dif = abs(_target.x - rightBorder);
+			// 		}
+			// 	} else if (_target.y > topBorder && _target.y < bottomBorder) {
+			// 		//horizontal breach!
+			// 		if (_target.x < rightBorder){
+			// 			float dif = abs(_target.x - rightBorder);
 
-				// 		_target.x = rightBorder;
-				// 		_futureOrigin.x = rightBorder;
-				// 		_futureOrigin.z = _futureOrigin.z + dif;
+			// 			_target.x = rightBorder;
+			// 			_futureOrigin.x = rightBorder;
+			// 			_futureOrigin.z = _futureOrigin.z + dif;
 
-				// 	} else if (_target.x > leftBorder) {
-				// 		float dif = abs(leftBorder - _target.x);
+			// 		} else if (_target.x > leftBorder) {
+			// 			float dif = abs(leftBorder - _target.x);
 
-				// 		_target.x = leftBorder;
-				// 		_futureOrigin.x = leftBorder;
-				// 		_futureOrigin.z = _futureOrigin.z + dif;
-						
-				// 	}
-				// }
-			}
+			// 			_target.x = leftBorder;
+			// 			_futureOrigin.x = leftBorder;
+			// 			_futureOrigin.z = _futureOrigin.z + dif;
+			
+			// 		}
+			// 	}
+			// }
 			break;
 		}
 	}
@@ -203,7 +320,7 @@ class Stone {
 
 	void drawStone(PVector targ) {
 
-		if (!_fixed) { //dont draw until fixed
+		if (!_fixed && !targetIsSet) { //dont draw until fixed
 			setTarget(targ);
 		} else {
 			noStroke();

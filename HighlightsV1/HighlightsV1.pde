@@ -20,14 +20,14 @@ void setup() {
 	//set origin of "first stone"
 	lineHandler = new LineHandler(ultimateOrigin);
 
-	// allTargets.add(new PVector());
+	allTargets.add(new PVector());
 }
 
 void draw() {
 	background(255, 120);
 	lineHandler.update(allTargets);
 
-	// allTargets.get(0).set(mouseX, mouseY, 0);
+	allTargets.get(0).set(mouseX, mouseY, 0);
 }
 
 
