@@ -6,7 +6,7 @@ class Stone {
 	float _stepMaximum = 25;
 	float _stepMinimum = 20;
 
-	float _alpha = 0.2;
+	float _alpha = 255;
 
 	//TABLE SETTINGS:
 	float leftBorder, rightBorder, topBorder, bottomBorder;
@@ -57,7 +57,8 @@ class Stone {
 		//sets target to zsize if on table
 		
 		if (!targetOnTableCheck()){
-			// _tempTarget.z = -30;
+			//SPAGHETTI CODE IS HERE:
+			_tempTarget.z = -100;
 		}
 
 		axisBlocker();
