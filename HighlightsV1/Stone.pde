@@ -340,7 +340,8 @@ class Stone {
 			setTarget(targ);
 		} else {
 			noStroke();
-			fill(255, 0, 0, _alpha);
+			// fill(255, 0, 0, _alpha);
+			fill(map(_centerPoint.z, 0, 100, 0, 255), map(_centerPoint.z, 0, 100, 255, 0), 0, _alpha);
 
 			if (abs(_centerPoint.x - width / 2) < x_size / 2 && abs(_centerPoint.y - height / 2) < y_size / 2 ) {
 				pushMatrix();
