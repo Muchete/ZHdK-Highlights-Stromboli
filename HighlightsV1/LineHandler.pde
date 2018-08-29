@@ -99,8 +99,9 @@ class LineHandler {
 
 	void updateLineTargets() {
 		//if more or less targets then before, reassign targets
-		if (targetAmount != allTargets.size()) {
-			targetAmount = allTargets.size();
+		
+		// if (targetAmount != allTargets.size()) {
+		// 	targetAmount = allTargets.size();
 
 			//if more targets, create new line, else reassign
 			if (allTargets.size() > allLines.size()) {
@@ -108,7 +109,7 @@ class LineHandler {
 			} else {
 				reAssignTargets();
 			}
-		}
+		// }
 	}
 
 	void addLine() {
