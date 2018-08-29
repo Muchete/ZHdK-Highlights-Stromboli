@@ -29,26 +29,31 @@ class LineHandler {
 
 	void drawMappingFields() {
 
-		background(255);
+		background(0);
 
 		//draw mapping fields
 		noStroke();
 		
-		fill(0);
+		fill(255);
 		rectMode(CORNER);
 		rect(10, 10, 2 * x_size + 2 * y_size, z_size);
 
+		stroke(0);
+		line(10 + y_size, 10, 10 + y_size, 10 + y_size);
+		line(10 + y_size + x_size, 10, 10 + y_size + x_size, 10 + y_size);
+		line(10 + y_size + x_size + y_size, 10, 10 + y_size + x_size + y_size, 10 + y_size);
+
 		ellipseMode(CORNER);
 		ellipse(10, 10 + z_size + 10, radius * 2, radius * 2);
-		fill(255);
+		fill(0);
 		rectMode(CENTER);
 		rect(10 + radius, 10 + z_size + 10 + radius, x_size, y_size);
 
 		ellipseMode(CORNER);
-		stroke(0);
+		stroke(255);
 		noFill();
 		ellipse(10 + 2 * radius + 10, 10 + z_size + 10, radius * 2, radius * 2);
-		fill(0);
+		fill(255);
 		noStroke();
 		rectMode(CENTER);
 		rect(10 + 3 * radius + 10, 10 + z_size + 10 + radius, x_size, y_size);
