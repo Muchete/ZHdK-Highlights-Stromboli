@@ -55,7 +55,10 @@ class Stone {
 		_tempTarget = targ.copy();
 
 		//sets target to zsize if on table
-		targetOnTableCheck();
+		
+		if (!targetOnTableCheck()){
+			// _tempTarget.z = -30;
+		}
 
 		axisBlocker();
 
@@ -75,10 +78,13 @@ class Stone {
 		targetIsSet = true;
 	}
 
-	void targetOnTableCheck(){
+	boolean targetOnTableCheck(){
 		if (_tempTarget.x > leftBorder && rightBorder > _tempTarget.x && _tempTarget.y > topBorder && bottomBorder > _tempTarget.y){
 			println("TARGET ON TABLE");
 			_tempTarget.z = z_size;
+			return true;
+		} else {
+			return false;
 		}
 	}
 
@@ -92,66 +98,66 @@ class Stone {
 		switch (axisBlock) {
 		case 0:
 			//if in x block
-			// if (_origin.x == leftBorder){
-			// 	//if on surface 2
-			// 	if (_target.z > z_size){
-			// 		float dif = abs(_target.z - z_size);
+			if (_origin.x == leftBorder){
+				//if on surface 2
+				if (_target.z > z_size){
+					float dif = abs(_target.z - z_size);
 
-			// 		_target.z = z_size;
-			// 		_futureOrigin.z = z_size;
-			// 		_futureOrigin.x = _futureOrigin.x + dif;
-			// 	} else if (_target.z < 0){
-			// 		float dif = abs(_target.z - 0);
+					_target.z = z_size;
+					_futureOrigin.z = z_size;
+					_futureOrigin.x = _futureOrigin.x + dif;
+				} else if (_target.z < 0){
+					float dif = abs(_target.z - 0);
 
-			// 		_target.z = 0;
-			// 		_futureOrigin.z = 0;
-			// 		_futureOrigin.x = _futureOrigin.x - dif;
-			// 	}
+					_target.z = 0;
+					_futureOrigin.z = 0;
+					_futureOrigin.x = _futureOrigin.x - dif;
+				}
 
-			// 	if (_target.y > bottomBorder) {
-			// 		float dif = abs(_target.y - bottomBorder);
+				if (_target.y > bottomBorder) {
+					float dif = abs(_target.y - bottomBorder);
 
-			// 		_target.y = bottomBorder;
-			// 		_futureOrigin.y = bottomBorder;
-			// 		_futureOrigin.x = _futureOrigin.x + dif;
-			// 	} else if (_target.y < topBorder){
-			// 		float dif = abs(topBorder - _target.y);
+					_target.y = bottomBorder;
+					_futureOrigin.y = bottomBorder;
+					_futureOrigin.x = _futureOrigin.x + dif;
+				} else if (_target.y < topBorder){
+					float dif = abs(topBorder - _target.y);
 
-			// 		_target.y = topBorder;
-			// 		_futureOrigin.y = topBorder;
-			// 		_futureOrigin.x = _futureOrigin.x - dif;
-			// 	}
+					_target.y = topBorder;
+					_futureOrigin.y = topBorder;
+					_futureOrigin.x = _futureOrigin.x - dif;
+				}
 
-			// } else if (_origin.x == rightBorder){
-			// 	//if on surface 4
-			// 	if (_target.z > z_size){
-			// 		float dif = abs(_target.z - z_size);
+			} else if (_origin.x == rightBorder){
+				//if on surface 4
+				if (_target.z > z_size){
+					float dif = abs(_target.z - z_size);
 
-			// 		_target.z = z_size;
-			// 		_futureOrigin.z = z_size;
-			// 		_futureOrigin.x = _futureOrigin.x - dif;
-			// 	} else if (_target.z < 0){
-			// 		float dif = abs(_target.z - 0);
+					_target.z = z_size;
+					_futureOrigin.z = z_size;
+					_futureOrigin.x = _futureOrigin.x - dif;
+				} else if (_target.z < 0){
+					float dif = abs(_target.z - 0);
 
-			// 		_target.z = 0;
-			// 		_futureOrigin.z = 0;
-			// 		_futureOrigin.x = _futureOrigin.x + dif;
-			// 	}
+					_target.z = 0;
+					_futureOrigin.z = 0;
+					_futureOrigin.x = _futureOrigin.x + dif;
+				}
 
-			// 	if (_target.y > bottomBorder) {
-			// 		float dif = abs(_target.y - bottomBorder);
+				if (_target.y > bottomBorder) {
+					float dif = abs(_target.y - bottomBorder);
 
-			// 		_target.y = bottomBorder;
-			// 		_futureOrigin.y = bottomBorder;
-			// 		_futureOrigin.x = _futureOrigin.x - dif;
-			// 	} else if (_target.y < topBorder){
-			// 		float dif = abs(topBorder - _target.y);
+					_target.y = bottomBorder;
+					_futureOrigin.y = bottomBorder;
+					_futureOrigin.x = _futureOrigin.x - dif;
+				} else if (_target.y < topBorder){
+					float dif = abs(topBorder - _target.y);
 
-			// 		_target.y = topBorder;
-			// 		_futureOrigin.y = topBorder;
-			// 		_futureOrigin.x = _futureOrigin.x + dif;
-			// 	}
-			// }
+					_target.y = topBorder;
+					_futureOrigin.y = topBorder;
+					_futureOrigin.x = _futureOrigin.x + dif;
+				}
+			}
 			break;
 		case 1:
 			//if in y block
