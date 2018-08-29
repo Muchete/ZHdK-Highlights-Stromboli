@@ -5,7 +5,6 @@ class StoneLine {
 	float targetTolerance = 5;
 
 	//REQUIREMENTS
-
 	int lastTime;
 	int _targetId;
 	PVector _myTarget;

@@ -1,6 +1,6 @@
 
 //SETTINGS:
-PVector ultimateOrigin = new PVector(500, 500, 100); //physical stone position
+PVector ultimateOrigin = new PVector(500, 500); //physical stone position
 
 //REQUIREMENTS:
 LineHandler lineHandler;
@@ -16,6 +16,9 @@ int radius = 200;
 
 void setup() {
 	size(1000, 1000);
+
+	//set table size in ultimateOrigin vector
+	ultimateOrigin.z = z_size;
 
 	//set origin of "first stone"
 	lineHandler = new LineHandler();
