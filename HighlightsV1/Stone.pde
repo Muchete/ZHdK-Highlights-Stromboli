@@ -244,45 +244,44 @@ class Stone {
 
 					}
 				}
-			} 
-			// else if (_origin.z == 0){
+			} else if (_origin.z == 0){
 				//if on floor
-			// 	if (_target.x > leftBorder && _target.x < rightBorder) {
-			// 		//vertical breach
-			// 		if (_target.y < bottomBorder) {
-			// 			float dif = abs(_target.y - bottomBorder);
+				// if (_target.x > leftBorder && _target.x < rightBorder) {
+				// 	//vertical breach
+				// 	if (_target.y < bottomBorder) {
+				// 		float dif = abs(_target.y - bottomBorder);
 
-			// 			_target.y = bottomBorder; 
-			// 			_futureOrigin.y = bottomBorder;
-			// 			_futureOrigin.z = _futureOrigin.z + dif;
+				// 		_target.y = bottomBorder; 
+				// 		_futureOrigin.y = bottomBorder;
+				// 		_futureOrigin.z = _futureOrigin.z + dif;
 
-			// 		} else if (_target.y > topBorder){
-			// 			float dif = abs(topBorder - _target.y);
+				// 	} else if (_target.y > topBorder){
+				// 		float dif = abs(topBorder - _target.y);
 
-			// 			_target.y = topBorder; 
-			// 			_futureOrigin.y = topBorder;
-			// 			_futureOrigin.z = _futureOrigin.z + dif;
+				// 		_target.y = topBorder; 
+				// 		_futureOrigin.y = topBorder;
+				// 		_futureOrigin.z = _futureOrigin.z + dif;
 
-			// 		}
-			// 	} else if (_target.y > topBorder && _target.y < bottomBorder) {
-			// 		//horizontal breach!
-			// 		if (_target.x < rightBorder){
-			// 			float dif = abs(_target.x - rightBorder);
+				// 	}
+				// } else if (_target.y > topBorder && _target.y < bottomBorder) {
+				// 	//horizontal breach!
+				// 	if (_target.x < rightBorder){
+				// 		float dif = abs(_target.x - rightBorder);
 
-			// 			_target.x = rightBorder;
-			// 			_futureOrigin.x = rightBorder;
-			// 			_futureOrigin.z = _futureOrigin.z + dif;
+				// 		_target.x = rightBorder;
+				// 		_futureOrigin.x = rightBorder;
+				// 		_futureOrigin.z = _futureOrigin.z + dif;
 
-			// 		} else if (_target.x > leftBorder) {
-			// 			float dif = abs(leftBorder - _target.x);
+				// 	} else if (_target.x > leftBorder) {
+				// 		float dif = abs(leftBorder - _target.x);
 
-			// 			_target.x = leftBorder;
-			// 			_futureOrigin.x = leftBorder;
-			// 			_futureOrigin.z = _futureOrigin.z + dif;
+				// 		_target.x = leftBorder;
+				// 		_futureOrigin.x = leftBorder;
+				// 		_futureOrigin.z = _futureOrigin.z + dif;
 			
-			// 		}
-			// 	}
-			// }
+				// 	}
+				// }
+			}
 			break;
 		}
 	}

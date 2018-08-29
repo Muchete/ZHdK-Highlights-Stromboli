@@ -27,7 +27,9 @@ void draw() {
 	background(255, 120);
 	lineHandler.update(allTargets);
 
-	allTargets.get(0).set(mouseX, mouseY, 0);
+	if (allTargets.size() > 0){
+		allTargets.get(0).set(mouseX, mouseY, 0);
+	}
 }
 
 
