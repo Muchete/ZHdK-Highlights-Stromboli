@@ -41,8 +41,8 @@ class StoneLine {
 		}
 
 		//draws all the stones
-		drawStoneLine();
-		// drawStoneLineMapping();
+		// drawStoneLine();
+		drawStoneLineMapping();
 	}
 
 	void drawStoneLine() {
