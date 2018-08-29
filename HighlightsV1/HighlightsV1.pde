@@ -18,7 +18,7 @@ void setup() {
 	size(1000, 1000);
 
 	//set origin of "first stone"
-	lineHandler = new LineHandler(ultimateOrigin);
+	lineHandler = new LineHandler();
 
 	allTargets.add(new PVector());
 }

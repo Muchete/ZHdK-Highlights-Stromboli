@@ -3,12 +3,10 @@ class LineHandler {
 	//SETTINGS:
 
 	//REQUIREMENTS
-	PVector origin;
 	int targetAmount = 0;
 	ArrayList<StoneLine> allLines = new ArrayList<StoneLine>();
 
-	LineHandler (PVector o) {
-		origin = o;
+	LineHandler () {
 	}
 
 	void update(ArrayList<PVector> targets) {
@@ -116,12 +114,12 @@ class LineHandler {
 	void addLine() {
 
 		if (allLines.size() == 0) {
-			allLines.add(new StoneLine(origin, origin, allTargets.size() - 1));
+			allLines.add(new StoneLine(ultimateOrigin, allTargets.size() - 1));
 		} else {
 
 			PVector newTarget = allTargets.get(allTargets.size() - 1);
 
-			float firstDistance = PVector.dist(newTarget, origin);
+			float firstDistance = PVector.dist(newTarget, ultimateOrigin);
 			float closestDistance = firstDistance;
 			int closestBranchLine = 0;
 			int stoneIndex = 0;
@@ -144,11 +142,11 @@ class LineHandler {
 
 			float bestStoneDist = PVector.dist(allLines.get(closestBranchLine).stoneList.get(stoneIndex)._target, newTarget);
 
-			if (bestStoneDist < PVector.dist(newTarget, origin)) {
+			if (bestStoneDist < PVector.dist(newTarget, ultimateOrigin)) {
 				println("DOING BRANCH!");
 				createBranch(closestBranchLine, stoneIndex, allTargets.size() - 1);
 			} else {
-				allLines.add(new StoneLine(origin, origin, allTargets.size() - 1));
+				allLines.add(new StoneLine(ultimateOrigin, allTargets.size() - 1));
 			}
 		}
 	}
@@ -160,7 +158,7 @@ class LineHandler {
 		//set branch stone to branched:
 		allLines.get(branchIndex).stoneList.get(stoneIndex).isBranchStone = true;
 
-		StoneLine newLine = new StoneLine(origin, branchOrigin, t);
+		StoneLine newLine = new StoneLine(branchOrigin, t);
 		newLine.isBranchLine = true;
 
 		allLines.add(newLine);
@@ -181,7 +179,7 @@ class LineHandler {
 		for (int t = 0; t < allTargets.size(); ++t) {
 			PVector thisTarget = allTargets.get(t);
 
-			float firstDistance = PVector.dist(thisTarget, origin);
+			float firstDistance = PVector.dist(thisTarget, ultimateOrigin);
 			float closestDistance = firstDistance;
 			int closestLine = 0;
 
@@ -207,7 +205,7 @@ class LineHandler {
 				assignTarget(closestLine, t);
 			} else {
 				//if origin was closer, create new line
-				allLines.add(new StoneLine(origin, origin, t));
+				allLines.add(new StoneLine(ultimateOrigin, t));
 			}
 		}
 	}
