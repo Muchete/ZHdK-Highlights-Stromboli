@@ -11,15 +11,15 @@ LineHandler lineHandler;
 ArrayList<PVector> allTargets = new ArrayList<PVector>();
 
 //3D SCENE PARAMETERS
-float x_size = 150;
-float y_size = 100;
-float z_size = 100;
-float radius = 200;
+float x_size = 160; //80cm
+float y_size = 96; //48cm
+float z_size = 115; //57.5cm
+float radius = 200; 
 
 //------------------------------------------------------------------
 
 void setup() {
-	size(1000, 1000);
+	size(1000, 1000, P3D);
 
 	//create syphon server for sending the screen to resolume
 	server = new SyphonServer(this, "Processing");

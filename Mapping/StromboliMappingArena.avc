@@ -166,12 +166,12 @@
 		</Params>
 		<Clip name="Clip" uniqueId="1535297786573" layerIndex="0" columnIndex="0">
 			<Params name="Params">
-				<Param storage="3" name="Name" default="ProcessingToArena - Processing" value="ProcessingToArena - Processing"/>
+				<Param storage="3" name="Name" default="HighlightsV1 - Processing" value="HighlightsV1 - Processing"/>
 				<ParamChoice storage="3" name="TransportType" default="0" value="0" storeChoices="0"/>
 			</Params>
 			<Transport name="Transport">
 				<Params name="Params">
-					<ParamRange name="Position" default="0" value="2686.6636609993825004">
+					<ParamRange name="Position" default="0" value="2790.9635850000145183">
 						<BehaviourDouble name="BehaviourDouble">
 							<PhaseSourceTimeline name="PhaseSourceTimeline" globalSpeedEnabled="1">
 								<Params name="Params">
@@ -196,8 +196,8 @@
 			</ClipView>
 			<VideoTrack name="VideoTrack" manualDuration="0">
 				<Params name="Params">
-					<ParamRange storage="3" name="Width" default="400" value="400"/>
-					<ParamRange storage="3" name="Height" default="400" value="400"/>
+					<ParamRange storage="3" name="Width" default="1000" value="1000"/>
+					<ParamRange storage="3" name="Height" default="1000" value="1000"/>
 					<Param storage="3" name="RScale" default="1" value="1"/>
 					<Param storage="3" name="GScale" default="1" value="1"/>
 					<Param storage="3" name="BScale" default="1" value="1"/>
@@ -210,8 +210,8 @@
 				</RenderPass>
 				<ChoosableMixer name="Blend"/>
 				<PrimarySource>
-					<VideoSource storage="0" name="VideoSource" width="400" height="400" type="SyphonVideoSource" serverName="ProcessingToArena - Processing" serverUuid="info.v002.Syphon.BB66CB9D-2906-4FDC-BDDC-6707142F824F">
-						<SyphonInfo serverName="ProcessingToArena - Processing"/>
+					<VideoSource storage="0" name="VideoSource" width="1000" height="1000" type="SyphonVideoSource" serverName="HighlightsV1 - Processing" serverUuid="info.v002.Syphon.527E1959-AAE0-45A3-982E-75BF0B334AE6">
+						<SyphonInfo serverName="HighlightsV1 - Processing"/>
 						<RenderPass name="RenderPassChain" type="RenderPassChain" uniqueId="RenderPassChain" baseType="RenderPassChain"/>
 					</VideoSource>
 				</PrimarySource>
