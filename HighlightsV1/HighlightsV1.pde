@@ -1,3 +1,7 @@
+import codeanticode.syphon.*;
+
+//COMMUNICATION WITH RESOLUME
+SyphonServer server;
 
 //SETTINGS:
 PVector ultimateOrigin = new PVector(500, 500); //physical stone position
@@ -17,6 +21,9 @@ float radius = 200;
 void setup() {
 	size(1000, 1000);
 
+	//create syphon server for sending the screen to resolume
+	server = new SyphonServer(this, "Processing");
+
 	//set table size in ultimateOrigin vector
 	ultimateOrigin.z = z_size;
 
@@ -33,6 +40,8 @@ void draw() {
 	if (allTargets.size() > 0){
 		allTargets.get(0).set(mouseX, mouseY, 0);
 	}
+
+	server.sendScreen();
 }
 
 //for debugging only
