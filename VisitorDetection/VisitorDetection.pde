@@ -10,6 +10,9 @@ int radius;
 int lowerThreshold = 0;
 int upperThreshold = 900;
 
+ArrayList<PVector> allTargets = new ArrayList<PVector>();
+PVector centerPoint;
+
 void setup() {
     size(640, 480);
 
@@ -19,6 +22,8 @@ void setup() {
     blobHandler = new BlobHandler();
 
     radius = int(height * 0.75);
+
+    centerPoint = new PVector(width/2, height/2);
 }
 
 void draw() {
@@ -48,22 +53,16 @@ void draw() {
     image(result, 0, 0);
 
     blobHandler.update(result);
+    allTargets = blobHandler.activeBlobs(centerPoint, 100, 150);
 
     for (Blob b : blobHandler.blobs) {
         b.show();
-        if (PVector.dist(b.getCenter(), new PVector(width/2, height/2)) < radius/2) {
-                touched = true;
-        }
     } 
 
 
-    noFill();
-    if (touched) {
-        stroke(0, 255, 0);  
-    } else {
-        stroke(255, 0, 0);
-    }
-    ellipse(width / 2, height / 2, radius, radius);
+    stroke(0, 255, 0);
+    noFill(); 
+    ellipse(centerPoint.x, centerPoint.y, 150, 150);
 
 }
 
@@ -87,5 +86,9 @@ void keyPressed() {
         }
     }
     println(upperThreshold);
+}
+
+void mouseClicked() {
+    centerPoint = new PVector(mouseX, mouseY);
 }
 

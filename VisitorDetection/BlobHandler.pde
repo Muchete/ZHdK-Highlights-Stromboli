@@ -130,6 +130,20 @@ class BlobHandler {
 	    }
 	}
 
+	ArrayList<PVector> activeBlobs(PVector center, int inner, int outer) {
+
+		ArrayList<PVector> activeBlobs = new ArrayList<PVector>();		
+
+		for (Blob b : blobs) {
+			float distance = PVector.dist(b.getCenter(), center);
+	        if (distance > inner && distance < outer) {
+	        	activeBlobs.add(b.getCenter());
+	        }
+	    }
+
+	    return activeBlobs;
+	}
+
 	//helper functions for color comparison
 	private float distSq(float x1, float y1, float z1, float x2, float y2, float z2) {
         float d = (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1) +(z2-z1)*(z2-z1);
