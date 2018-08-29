@@ -349,8 +349,30 @@ class Stone {
 				stroke(0, _alpha);
 				line(_origin.x, _origin.y, _target.x, _target.y);
 				popMatrix();
-			} else if (false) {
-
+			} else if (_centerPoint.x == leftBorder) {
+				pushMatrix();
+				translate(10, 10);
+				ellipseMode(CENTER);
+				ellipse(_centerPoint.y - topBorder, z_size - _centerPoint.z, _mag, _mag);
+				popMatrix();	
+			}  else if (_centerPoint.x == rightBorder) {
+				pushMatrix();
+				translate(10 + y_size + x_size, 10);
+				ellipseMode(CENTER);
+				ellipse(y_size - _centerPoint.y + topBorder, z_size - _centerPoint.z, _mag, _mag);
+				popMatrix();	
+			} else if (_centerPoint.y == topBorder) {
+				pushMatrix();
+				translate(10 + y_size + x_size + y_size, 10);
+				ellipseMode(CENTER);
+				ellipse(x_size - _centerPoint.x + leftBorder, z_size - _centerPoint.z, _mag, _mag);
+				popMatrix();	
+			} else if (_centerPoint.y == bottomBorder) {
+				pushMatrix();
+				translate(10 + y_size, 10);
+				ellipseMode(CENTER);
+				ellipse(_centerPoint.x - leftBorder, z_size - _centerPoint.z, _mag, _mag);
+				popMatrix();	
 			}
 		}
 	}
