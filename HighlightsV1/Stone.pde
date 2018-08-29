@@ -54,6 +54,9 @@ class Stone {
 
 		_tempTarget = targ.copy();
 
+		//sets target to zsize if on table
+		targetOnTableCheck();
+
 		axisBlocker();
 
 		_step = PVector.sub(_tempTarget, _origin);
@@ -70,6 +73,13 @@ class Stone {
 		_centerPoint = PVector.add(_origin, _step.div(2));
 
 		targetIsSet = true;
+	}
+
+	void targetOnTableCheck(){
+		if (_tempTarget.x > leftBorder && rightBorder > _tempTarget.x && _tempTarget.y > topBorder && bottomBorder > _tempTarget.y){
+			println("TARGET ON TABLE");
+			_tempTarget.z = z_size;
+		}
 	}
 
 	void collisionDetection() {
@@ -145,37 +155,36 @@ class Stone {
 			break;
 		case 1:
 			//if in y block
-			// if (_origin.y == topBorder){
-			// 	//if on surface 3
-			// 	if (_target.z > z_size){
-			// 		float dif = abs(_target.z - z_size);
+			if (_origin.y == topBorder){
+				//if on surface 3
+				if (_target.z > z_size){
+					float dif = abs(_target.z - z_size);
 
-			// 		_target.z = z_size;
-			// 		_futureOrigin.z = z_size;
-			// 		_futureOrigin.y = _futureOrigin.y + dif;
-			// 	} else if (_target.z < 0){
-			// 		float dif = abs(_target.z - 0);
+					_target.z = z_size;
+					_futureOrigin.z = z_size;
+					_futureOrigin.y = _futureOrigin.y + dif;
+				} else if (_target.z < 0){
+					float dif = abs(_target.z - 0);
 
-			// 		_target.z = 0;
-			// 		_futureOrigin.z = 0;
-			// 		_futureOrigin.y = _futureOrigin.y - dif;
-			// 	}
+					_target.z = 0;
+					_futureOrigin.z = 0;
+					_futureOrigin.y = _futureOrigin.y - dif;
+				}
 
-			// 	if (_target.x < leftBorder){
-			// 		float dif = abs(_target.x - leftBorder);
+				if (_target.x < leftBorder){
+					float dif = abs(_target.x - leftBorder);
 
-			// 		_target.x = leftBorder;
-			// 		_futureOrigin.x = leftBorder;
-			// 		_futureOrigin.y = _futureOrigin.y + dif;
-			// 	} else if (_target.x > rightBorder){
-			// 		float dif = abs(_target.x - rightBorder);
+					_target.x = leftBorder;
+					_futureOrigin.x = leftBorder;
+					_futureOrigin.y = _futureOrigin.y + dif;
+				} else if (_target.x > rightBorder){
+					float dif = abs(_target.x - rightBorder);
 
-			// 		_target.x = rightBorder;
-			// 		_futureOrigin.x = rightBorder;
-			// 		_futureOrigin.y = _futureOrigin.y + dif;
-			// 	}
-			// } else 
-			if (_origin.y == bottomBorder){
+					_target.x = rightBorder;
+					_futureOrigin.x = rightBorder;
+					_futureOrigin.y = _futureOrigin.y + dif;
+				}
+			} else if (_origin.y == bottomBorder){
 				//if on surface 1
 				if (_target.z > z_size){
 					float dif = abs(_target.z - z_size);
