@@ -330,15 +330,13 @@ class Stone {
 
 //draw the stones according to its position on the mapping fields
 	void drawMapping(PVector targ) {
-
 		if (!_fixed && !targetIsSet) { //dont draw until fixed
 			setTarget(targ);
 		} else {
 			noStroke();
-			// fill(255, 0, 0, _alpha);
-			fill(map(_centerPoint.z, 0, 100, 0, 255), map(_centerPoint.z, 0, 100, 255, 0), 0, _alpha);
-
-			if (abs(_centerPoint.x - width / 2) < x_size / 2 && abs(_centerPoint.y - height / 2) < y_size / 2 ) {
+			fill(255, 0, 0, _alpha);
+			//fill(map(_centerPoint.z, 0, 100, 0, 255), map(_centerPoint.z, 0, 100, 255, 0), 0, _alpha)
+			if (_centerPoint.z == z_size) {
 				pushMatrix();
 				translate(-width / 2, -height / 2);
 				translate(10 + 3 * radius + 10, 10 + z_size + 10 + radius);
@@ -348,7 +346,7 @@ class Stone {
 				stroke(0, _alpha);
 				line(_origin.x, _origin.y, _target.x, _target.y);
 				popMatrix();
-			} else if (abs(_centerPoint.x - width / 2) > x_size / 2 || abs(_centerPoint.y - height / 2) > y_size / 2 ) {
+			} else if (_centerPoint.z == 0.0) {
 				pushMatrix();
 				translate(-width / 2, -height / 2);
 				translate(10 + radius, 10 + z_size + 10 + radius);
@@ -358,6 +356,8 @@ class Stone {
 				stroke(0, _alpha);
 				line(_origin.x, _origin.y, _target.x, _target.y);
 				popMatrix();
+			} else if () {
+				
 			}
 		}
 	}

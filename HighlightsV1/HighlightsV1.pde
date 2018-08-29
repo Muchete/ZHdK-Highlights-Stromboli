@@ -7,10 +7,10 @@ LineHandler lineHandler;
 ArrayList<PVector> allTargets = new ArrayList<PVector>();
 
 //3D SCENE PARAMETERS
-int x_size = 150;
-int y_size = 100;
-int z_size = 100;
-int radius = 200;
+float x_size = 150;
+float y_size = 100;
+float z_size = 100;
+float radius = 200;
 
 //------------------------------------------------------------------
 
@@ -34,10 +34,6 @@ void draw() {
 		allTargets.get(0).set(mouseX, mouseY, 0);
 	}
 }
-
-
-
-
 
 //for debugging only
 void mouseClicked() {
