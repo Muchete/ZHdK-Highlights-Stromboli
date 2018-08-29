@@ -30,22 +30,6 @@ class Stone {
 
 	void setTarget(PVector targ) {
 
-		//add axis blocking for certain positions ?
-		// switch (surface) {
-		// case 0:
-		// case 5:
-		// 	targ.z = _origin.z;
-		// 	break;
-		// case 1:
-		// case 3:
-		// 	targ.y = _origin.y;
-		// 	break;
-		// case 2:
-		// case 4:
-		// 	targ.x = _origin.x;
-		// 	break;
-		// }
-
 		_target = targ;
 
 		_step = PVector.sub(_target, _origin);
@@ -60,45 +44,61 @@ class Stone {
 
 	}
 
-	void collisionDetection(){
+	void collisionDetection() {
 
-		float leftBorder = tableOrigin.x - tableWidth/2;
-		float rightBorder = tableOrigin.x + tableWidth/2;
-		float topBorder = tableOrigin.y - tableHeight/2;
-		float bottomBorder = tableOrigin.y + tableHeight/2;
+		PVector tempTarget = PVector.add(_origin, _step);
 
-	switch (surface) {
-	case 0:
+		float leftBorder = tableOrigin.x - tableWidth / 2;
+		float rightBorder = tableOrigin.x + tableWidth / 2;
+		float topBorder = tableOrigin.y - tableHeight / 2;
+		float bottomBorder = tableOrigin.y + tableHeight / 2;
 
-		//vertical breach
-		if (_target.x > leftBorder && _target.x < rightBorder){
-			if (_target.y > bottomBorder){
-				//nach unten weg!
-			} else if (_target.y < topBorder) {
-				//nach oben weg!
+
+		switch (surface) {
+		case 0:
+
+			if (tempTarget.x > leftBorder && tempTarget.x < rightBorder) {
+				//vertical breach
+				if (tempTarget.y > bottomBorder) {
+					println("nach unten weg!");
+
+
+
+					surface = 1;
+				} else if (tempTarget.y < topBorder) {
+					println("nach oben weg");
+
+
+
+					surface = 3;
+				}
+			} else if (tempTarget.y > topBorder && tempTarget.y < bottomBorder) {
+				//horizontal breach!
+				if (tempTarget.x > rightBorder) {
+					println("nach rechts weg");
+
+
+
+					surface = 4;
+				} else if (tempTarget.x < leftBorder) {
+					println("nach links weg");
+
+
+
+					surface = 2;
+				}
 			}
-		} else if (_target.y > topBorder && _target.y < bottomBorder) {
-			//horizontal breach!
-			if (_target.x > rightBorder) {
-				//nach rechts weg!
-			} else if (_target.x < leftBorder) {
-				//nach links weg!
-			}
+
+			break;
+		case 1:
+		case 3:
+
+			break;
+		case 2:
+		case 4:
+
+			break;
 		}
-
-
-
-
-		break;
-	case 1:
-	case 3:
-
-		break;
-	case 2:
-	case 4:
-
-		break;
-	}
 	}
 
 	void fix() {
@@ -120,37 +120,36 @@ class Stone {
 		}
 	}
 
-	//draw the stones according to its position on the mapping fields
+//draw the stones according to its position on the mapping fields
 	void drawMapping(PVector targ) {
 
-        if (!_fixed){ //dont draw until fixed
-            setTarget(targ);
-        } else {
-            noStroke();
-            fill(255, 0, 0, _alpha);
+		if (!_fixed) { //dont draw until fixed
+			setTarget(targ);
+		} else {
+			noStroke();
+			fill(255, 0, 0, _alpha);
 
-            if (abs(_centerPoint.x - width/2) < x_size/2 && abs(_centerPoint.y - height/2) < y_size/2 ) {
-                pushMatrix();
-                translate(-width/2, -height/2);
-                translate(10 + 3 * radius + 10, 10 + z_size + 10 + radius);
-                ellipseMode(CENTER);
-                ellipse(_centerPoint.x, _centerPoint.y, _mag, _mag);
+			if (abs(_centerPoint.x - width / 2) < x_size / 2 && abs(_centerPoint.y - height / 2) < y_size / 2 ) {
+				pushMatrix();
+				translate(-width / 2, -height / 2);
+				translate(10 + 3 * radius + 10, 10 + z_size + 10 + radius);
+				ellipseMode(CENTER);
+				ellipse(_centerPoint.x, _centerPoint.y, _mag, _mag);
 
-                stroke(0, _alpha);
-                line(_origin.x, _origin.y, _target.x, _target.y);
-                popMatrix();
-            } 
-            else if (abs(_centerPoint.x - width/2) > x_size/2 || abs(_centerPoint.y - height/2) > y_size/2 ) {
-                pushMatrix();
-                translate(-width/2, -height/2);
-                translate(10 + radius, 10 + z_size + 10 + radius);
-                ellipseMode(CENTER);
-                ellipse(_centerPoint.x, _centerPoint.y, _mag, _mag);
+				stroke(0, _alpha);
+				line(_origin.x, _origin.y, _target.x, _target.y);
+				popMatrix();
+			} else if (abs(_centerPoint.x - width / 2) > x_size / 2 || abs(_centerPoint.y - height / 2) > y_size / 2 ) {
+				pushMatrix();
+				translate(-width / 2, -height / 2);
+				translate(10 + radius, 10 + z_size + 10 + radius);
+				ellipseMode(CENTER);
+				ellipse(_centerPoint.x, _centerPoint.y, _mag, _mag);
 
-                stroke(0, _alpha);
-                line(_origin.x, _origin.y, _target.x, _target.y);
-                popMatrix();
-            }
-        }
-    }
+				stroke(0, _alpha);
+				line(_origin.x, _origin.y, _target.x, _target.y);
+				popMatrix();
+			}
+		}
+	}
 }
