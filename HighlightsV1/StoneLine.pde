@@ -1,7 +1,7 @@
 class StoneLine {
 
 	//SETTINGS:
-	float intervall = 0.1; //draw stone every X seconds
+	float intervall = 0.5; //draw stone every X seconds
 	float targetTolerance = 5;
 
 	//REQUIREMENTS
@@ -72,9 +72,9 @@ class StoneLine {
 			newestStone = stoneList.get(stoneList.size() - 1); //get latest stone
 
 			//if hasn't reached target yet
-			if (PVector.dist(newestStone._target, _myTarget) > targetTolerance) {
+			if (PVector.dist(newestStone._futureOrigin, _myTarget) > targetTolerance) {
 				newestStone.fix(); //make latest stone solid
-				stoneList.add( new Stone(tOrigin, newestStone._target)); //create new unsolid & invisible stone
+				stoneList.add( new Stone(tOrigin, newestStone._futureOrigin)); //create new unsolid & invisible stone
 			}
 		}
 	}

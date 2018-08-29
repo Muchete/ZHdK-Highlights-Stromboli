@@ -12,91 +12,187 @@ class Stone {
 	PVector tableOrigin;
 	float tableWidth = 500;
 	float tableHeight = 300;
+	float leftBorder, rightBorder, topBorder, bottomBorder, tableZ;
 
 	//REQUIREMENTS
 	boolean isBranchStone = false;
+	boolean targetIsSet = false; 
 	float _mag;
-	PVector _origin, _target, _step, _centerPoint;
+	PVector _origin, _target, _tempTarget, _futureOrigin, _step, _centerPoint;
 	boolean _fixed = false;
 
-	int surface = 5; //stores, on what surface of the box the stone currently is
+	int axisBlock; //stores, on what surface of the box the stone currently is
 
 	Stone (PVector tOrigin, PVector v) {
 		tableOrigin = tOrigin;
 		_origin = v;
 		_randomness = random(-_randomness, _randomness);
 		_stepMaximum = random(_stepMinimum, _stepMaximum);
+
+
+		leftBorder = tableOrigin.x - tableWidth / 2;
+		rightBorder = tableOrigin.x + tableWidth / 2;
+		topBorder = tableOrigin.y - tableHeight / 2;
+		bottomBorder = tableOrigin.y + tableHeight / 2;
+		tableZ = tableOrigin.z;
+		setCurrentAxisblock();
+	}
+
+	void setCurrentAxisblock() {
+		//if on flat surface
+		if (_origin.z == tableZ || _origin.z == 0) {
+			axisBlock = 2;
+		} else {
+			if (_origin.x == leftBorder || _origin.x == rightBorder){
+				axisBlock = 0;
+			} else if (_origin.y == topBorder || _origin.y == bottomBorder){
+				axisBlock = 1;
+			} else {
+				println("ERROR! couldn't determine surface of stone!");	
+				println("_origin: "+_origin);
+			}
+		}
 	}
 
 	void setTarget(PVector targ) {
 
-		_target = targ;
+		_tempTarget = targ.copy();
 
-		_step = PVector.sub(_target, _origin);
+		axisBlocker();
+
+		_step = PVector.sub(_tempTarget, _origin);
 		_step.limit(_stepMaximum);
-		_step.rotate(radians(_randomness));
+		_step = rotateRandom(_step);
+
+		println("_origin: "+_origin);
+
+		_target = PVector.add(_origin, _step);
+		_futureOrigin = _target.copy();
 
 		collisionDetection();
 
-		_target = PVector.add(_origin, _step);
+		_step = PVector.sub(_target, _origin);
 		_mag = _step.mag();
 		_centerPoint = PVector.add(_origin, _step.div(2));
 
+		targetIsSet = true;
 	}
 
 	void collisionDetection() {
 
-		PVector tempTarget = PVector.add(_origin, _step);
-
-		float leftBorder = tableOrigin.x - tableWidth / 2;
-		float rightBorder = tableOrigin.x + tableWidth / 2;
-		float topBorder = tableOrigin.y - tableHeight / 2;
-		float bottomBorder = tableOrigin.y + tableHeight / 2;
-
-
-		switch (surface) {
+		switch (axisBlock) {
 		case 0:
-
-			if (tempTarget.x > leftBorder && tempTarget.x < rightBorder) {
-				//vertical breach
-				if (tempTarget.y > bottomBorder) {
-					println("nach unten weg!");
-
-
-
-					surface = 1;
-				} else if (tempTarget.y < topBorder) {
-					println("nach oben weg");
-
-
-
-					surface = 3;
-				}
-			} else if (tempTarget.y > topBorder && tempTarget.y < bottomBorder) {
-				//horizontal breach!
-				if (tempTarget.x > rightBorder) {
-					println("nach rechts weg");
-
-
-
-					surface = 4;
-				} else if (tempTarget.x < leftBorder) {
-					println("nach links weg");
-
-
-
-					surface = 2;
-				}
-			}
+			//if in x block
 
 			break;
 		case 1:
-		case 3:
+			//if in y block
 
 			break;
 		case 2:
-		case 4:
+			//if in z block
+			if (_origin.z == tableZ) {
+				//if on table
+				if (_target.x > leftBorder && _target.x < rightBorder) {
+					//vertical breach
+					if (_target.y > bottomBorder) {
+						float dif = abs(_target.y - bottomBorder);
 
+						_target.y = bottomBorder; 
+						_futureOrigin.y = bottomBorder;
+						_futureOrigin.z = _futureOrigin.z - dif;
+
+					} else if (_target.y < topBorder){
+						float dif = abs(topBorder - _target.y);
+
+						_target.y = topBorder; 
+						_futureOrigin.y = topBorder;
+						_futureOrigin.z = _futureOrigin.z - dif;
+
+					}
+				} else if (_target.y > topBorder && _target.y < bottomBorder) {
+					//horizontal breach!
+					if (_target.x > rightBorder){
+						float dif = abs(_target.x - rightBorder);
+
+						_target.x = rightBorder;
+						_futureOrigin.x = rightBorder;
+						_futureOrigin.z = _futureOrigin.z - dif;
+
+					} else if (_target.x < leftBorder) {
+						float dif = abs(leftBorder - _target.x);
+
+						_target.x = leftBorder;
+						_futureOrigin.x = leftBorder;
+						_futureOrigin.z = _futureOrigin.z - dif;
+
+					}
+				}
+			} else if (_origin.z == 0){
+				//if on table
+				// if (_target.x > leftBorder && _target.x < rightBorder) {
+				// 	//vertical breach
+				// 	if (_target.y < bottomBorder) {
+				// 		float dif = abs(_target.y - bottomBorder);
+
+				// 		_target.y = bottomBorder; 
+				// 		_futureOrigin.y = bottomBorder;
+				// 		_futureOrigin.z = _futureOrigin.z + dif;
+
+				// 	} else if (_target.y > topBorder){
+				// 		float dif = abs(topBorder - _target.y);
+
+				// 		_target.y = topBorder; 
+				// 		_futureOrigin.y = topBorder;
+				// 		_futureOrigin.z = _futureOrigin.z + dif;
+
+				// 	}
+				// } else if (_target.y > topBorder && _target.y < bottomBorder) {
+				// 	//horizontal breach!
+				// 	if (_target.x < rightBorder){
+				// 		float dif = abs(_target.x - rightBorder);
+
+				// 		_target.x = rightBorder;
+				// 		_futureOrigin.x = rightBorder;
+				// 		_futureOrigin.z = _futureOrigin.z + dif;
+
+				// 	} else if (_target.x > leftBorder) {
+				// 		float dif = abs(leftBorder - _target.x);
+
+				// 		_target.x = leftBorder;
+				// 		_futureOrigin.x = leftBorder;
+				// 		_futureOrigin.z = _futureOrigin.z + dif;
+						
+				// 	}
+				// }
+			}
+			break;
+		}
+	}
+
+	PVector rotateRandom(PVector v){
+
+		if (axisBlock == 2){
+			_step.rotate(radians(_randomness));	
+		} else {
+
+		}
+
+		return v;
+	}
+
+	void axisBlocker(){
+
+		//blocks axis depending on current surface
+		switch (axisBlock) {
+		case 0:
+			_tempTarget.x = _origin.x;
+			break;
+		case 1:
+			_tempTarget.y = _origin.y;
+			break;
+		case 2:
+			_tempTarget.z = _origin.z;
 			break;
 		}
 	}
@@ -123,7 +219,7 @@ class Stone {
 //draw the stones according to its position on the mapping fields
 	void drawMapping(PVector targ) {
 
-		if (!_fixed) { //dont draw until fixed
+		if (!_fixed && !targetIsSet) { //dont draw until fixed
 			setTarget(targ);
 		} else {
 			noStroke();
