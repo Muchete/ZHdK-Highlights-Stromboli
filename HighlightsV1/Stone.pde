@@ -9,10 +9,7 @@ class Stone {
 	float _alpha = 255;
 
 	//TABLE SETTINGS:
-	PVector tableOrigin;
-	float tableWidth = 500;
-	float tableHeight = 300;
-	float leftBorder, rightBorder, topBorder, bottomBorder, tableZ;
+	float leftBorder, rightBorder, topBorder, bottomBorder;
 
 	//REQUIREMENTS
 	boolean isBranchStone = false;
@@ -23,24 +20,23 @@ class Stone {
 
 	int axisBlock; //stores, on what surface of the box the stone currently is
 
-	Stone (PVector tOrigin, PVector v) {
-		tableOrigin = tOrigin;
+	Stone (PVector v) {
 		_origin = v;
 		_randomness = random(-_randomness, _randomness);
 		_stepMaximum = random(_stepMinimum, _stepMaximum);
 
 
-		leftBorder = tableOrigin.x - tableWidth / 2;
-		rightBorder = tableOrigin.x + tableWidth / 2;
-		topBorder = tableOrigin.y - tableHeight / 2;
-		bottomBorder = tableOrigin.y + tableHeight / 2;
-		tableZ = tableOrigin.z;
+		leftBorder = ultimateOrigin.x - x_size / 2;
+		rightBorder = ultimateOrigin.x + x_size / 2;
+		topBorder = ultimateOrigin.y - y_size / 2;
+		bottomBorder = ultimateOrigin.y + y_size / 2;
+
 		setCurrentAxisblock();
 	}
 
 	void setCurrentAxisblock() {
 		//if on flat surface
-		if (_origin.z == tableZ || _origin.z == 0) {
+		if (_origin.z == z_size || _origin.z == 0) {
 			axisBlock = 2;
 		} else {
 			if (_origin.x == leftBorder || _origin.x == rightBorder){
@@ -85,11 +81,11 @@ class Stone {
 			//if in x block
 			// if (_origin.x == leftBorder){
 			// 	//if on surface 2
-			// 	if (_target.z > tableZ){
-			// 		float dif = abs(_target.z - tableZ);
+			// 	if (_target.z > z_size){
+			// 		float dif = abs(_target.z - z_size);
 
-			// 		_target.z = tableZ; 
-			// 		_futureOrigin.z = tableZ;
+			// 		_target.z = z_size; 
+			// 		_futureOrigin.z = z_size;
 			// 		_futureOrigin.x = _futureOrigin.x + dif;
 			// 	} else if (_target.z < 0){
 			// 		float dif = abs(_target.z - 0);
@@ -115,11 +111,11 @@ class Stone {
 
 			// } else if (_origin.x == rightBorder){
 			// 	//if on surface 4
-			// 	if (_target.z > tableZ){
-			// 		float dif = abs(_target.z - tableZ);
+			// 	if (_target.z > z_size){
+			// 		float dif = abs(_target.z - z_size);
 
-			// 		_target.z = tableZ; 
-			// 		_futureOrigin.z = tableZ;
+			// 		_target.z = z_size; 
+			// 		_futureOrigin.z = z_size;
 			// 		_futureOrigin.x = _futureOrigin.x - dif;
 			// 	} else if (_target.z < 0){
 			// 		float dif = abs(_target.z - 0);
@@ -148,11 +144,11 @@ class Stone {
 			//if in y block
 			// if (_origin.y == topBorder){
 			// 	//if on surface 3
-			// 	if (_target.z > tableZ){
-			// 		float dif = abs(_target.z - tableZ);
+			// 	if (_target.z > z_size){
+			// 		float dif = abs(_target.z - z_size);
 
-			// 		_target.z = tableZ; 
-			// 		_futureOrigin.z = tableZ;
+			// 		_target.z = z_size; 
+			// 		_futureOrigin.z = z_size;
 			// 		_futureOrigin.y = _futureOrigin.y + dif;
 			// 	} else if (_target.z < 0){
 			// 		float dif = abs(_target.z - 0);
@@ -177,14 +173,14 @@ class Stone {
 			// 	}
 			// } else if (_origin.y == bottomBorder){
 			// 	//if on surface 1
-			// 	if (_target.z > tableZ){
-			// 		float dif = abs(_target.z - tableZ);
+			// 	if (_target.z > z_size){
+			// 		float dif = abs(_target.z - z_size);
 
-			// 		_target.z = tableZ; 
-			// 		_futureOrigin.z = tableZ;
+			// 		_target.z = z_size; 
+			// 		_futureOrigin.z = z_size;
 			// 		_futureOrigin.y = _futureOrigin.y - dif;
 			// 	} else if (_target.z < 0){
-			// 		float dif = abs(_target.z - tableZ);
+			// 		float dif = abs(_target.z - z_size);
 
 			// 		_target.z = 0; 
 			// 		_futureOrigin.z = 0;
@@ -207,7 +203,7 @@ class Stone {
 			// }
 			break;
 		case 2:
-			if (_origin.z == tableZ) {
+			if (_origin.z == z_size) {
 				//if on table
 				if (_target.x > leftBorder && _target.x < rightBorder) {
 					//vertical breach
@@ -244,45 +240,44 @@ class Stone {
 
 					}
 				}
-			} 
-			// else if (_origin.z == 0){
+			} else if (_origin.z == 0){
 				//if on floor
-			// 	if (_target.x > leftBorder && _target.x < rightBorder) {
-			// 		//vertical breach
-			// 		if (_target.y < bottomBorder) {
-			// 			float dif = abs(_target.y - bottomBorder);
+				// if (_target.x > leftBorder && _target.x < rightBorder) {
+				// 	//vertical breach
+				// 	if (_target.y < bottomBorder) {
+				// 		float dif = abs(_target.y - bottomBorder);
 
-			// 			_target.y = bottomBorder; 
-			// 			_futureOrigin.y = bottomBorder;
-			// 			_futureOrigin.z = _futureOrigin.z + dif;
+				// 		_target.y = bottomBorder; 
+				// 		_futureOrigin.y = bottomBorder;
+				// 		_futureOrigin.z = _futureOrigin.z + dif;
 
-			// 		} else if (_target.y > topBorder){
-			// 			float dif = abs(topBorder - _target.y);
+				// 	} else if (_target.y > topBorder){
+				// 		float dif = abs(topBorder - _target.y);
 
-			// 			_target.y = topBorder; 
-			// 			_futureOrigin.y = topBorder;
-			// 			_futureOrigin.z = _futureOrigin.z + dif;
+				// 		_target.y = topBorder; 
+				// 		_futureOrigin.y = topBorder;
+				// 		_futureOrigin.z = _futureOrigin.z + dif;
 
-			// 		}
-			// 	} else if (_target.y > topBorder && _target.y < bottomBorder) {
-			// 		//horizontal breach!
-			// 		if (_target.x < rightBorder){
-			// 			float dif = abs(_target.x - rightBorder);
+				// 	}
+				// } else if (_target.y > topBorder && _target.y < bottomBorder) {
+				// 	//horizontal breach!
+				// 	if (_target.x < rightBorder){
+				// 		float dif = abs(_target.x - rightBorder);
 
-			// 			_target.x = rightBorder;
-			// 			_futureOrigin.x = rightBorder;
-			// 			_futureOrigin.z = _futureOrigin.z + dif;
+				// 		_target.x = rightBorder;
+				// 		_futureOrigin.x = rightBorder;
+				// 		_futureOrigin.z = _futureOrigin.z + dif;
 
-			// 		} else if (_target.x > leftBorder) {
-			// 			float dif = abs(leftBorder - _target.x);
+				// 	} else if (_target.x > leftBorder) {
+				// 		float dif = abs(leftBorder - _target.x);
 
-			// 			_target.x = leftBorder;
-			// 			_futureOrigin.x = leftBorder;
-			// 			_futureOrigin.z = _futureOrigin.z + dif;
+				// 		_target.x = leftBorder;
+				// 		_futureOrigin.x = leftBorder;
+				// 		_futureOrigin.z = _futureOrigin.z + dif;
 			
-			// 		}
-			// 	}
-			// }
+				// 	}
+				// }
+			}
 			break;
 		}
 	}
