@@ -1,7 +1,7 @@
 class StoneLine {
 
 	//SETTINGS:
-	float intervall = 0.5; //draw stone every X seconds
+	float intervall = 0.2; //draw stone every X seconds
 	float targetTolerance = 5;
 
 	//REQUIREMENTS

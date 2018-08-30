@@ -1,10 +1,9 @@
 class Stone {
 
 	//SETTINGS:
-
 	float _randomness = 45; //randomness
-	float _stepMaximum = 25; //step max
-	float _stepMinimum = 20; //step min
+	float _stepMaximum = 15; //step max
+	float _stepMinimum = 12; //step min
 
 	float _alpha = 255;
 	float birth;
