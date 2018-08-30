@@ -14,7 +14,10 @@ ArrayList<PVector> allTargets = new ArrayList<PVector>();
 float x_size = 160; //80cm
 float y_size = 96; //48cm
 float z_size = 115; //57.5cm
-float radius = 200; 
+float radius = 200;
+
+//2D SCENE PARAMETERS
+int offset = 10; // defines the space between the mapping fields
 
 //------------------------------------------------------------------
 

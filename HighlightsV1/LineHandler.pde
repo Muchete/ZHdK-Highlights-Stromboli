@@ -36,27 +36,27 @@ class LineHandler {
 		
 		fill(255);
 		rectMode(CORNER);
-		rect(10, 10, 2 * x_size + 2 * y_size, z_size);
+		rect(offset, offset, 2 * x_size + 2 * y_size, z_size);
 
 		stroke(0);
-		line(10 + y_size, 10, 10 + y_size, 10 + y_size);
-		line(10 + y_size + x_size, 10, 10 + y_size + x_size, 10 + y_size);
-		line(10 + y_size + x_size + y_size, 10, 10 + y_size + x_size + y_size, 10 + y_size);
+		line(offset + y_size, offset, offset + y_size, offset + z_size);
+		line(offset + y_size + x_size, offset, offset + y_size + x_size, offset + z_size);
+		line(offset + y_size + x_size + y_size, offset, offset + y_size + x_size + y_size, offset + z_size);
 
 		ellipseMode(CORNER);
-		ellipse(10, 10 + z_size + 10, radius * 2, radius * 2);
+		ellipse(offset, offset + z_size + offset, radius * 2, radius * 2);
 		fill(0);
 		rectMode(CENTER);
-		rect(10 + radius, 10 + z_size + 10 + radius, x_size, y_size);
+		rect(offset + radius, offset + z_size + offset + radius, x_size, y_size);
 
 		ellipseMode(CORNER);
 		stroke(255);
 		noFill();
-		ellipse(10 + 2 * radius + 10, 10 + z_size + 10, radius * 2, radius * 2);
+		ellipse(offset + 2 * radius + offset, offset + z_size + offset, radius * 2, radius * 2);
 		fill(255);
 		noStroke();
 		rectMode(CENTER);
-		rect(10 + 3 * radius + 10, 10 + z_size + 10 + radius, x_size, y_size);
+		rect(offset + 3 * radius + offset, offset + z_size + offset + radius, x_size, y_size);
 	}
 
 	void removeEmptyLines() {

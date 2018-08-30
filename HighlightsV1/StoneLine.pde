@@ -72,7 +72,7 @@ class StoneLine {
 			//if hasn't reached target yet
 			if (PVector.dist(newestStone._futureOrigin, _myTarget) > targetTolerance) {
 				newestStone.fix(); //make latest stone solid
-				stoneList.add( new Stone(newestStone._futureOrigin)); //create new unsolid & invisible stone
+				stoneList.add(new Stone(newestStone._futureOrigin)); //create new unsolid & invisible stone
 			}
 		}
 	}
