@@ -3,8 +3,8 @@ class Stone {
 	//SETTINGS:
 
 	float _randomness = 45;
-	float _stepMaximum = 25;
-	float _stepMinimum = 20;
+	float _stepMaximum = 15;
+	float _stepMinimum = 12;
 
 	float _alpha = 255;
 
