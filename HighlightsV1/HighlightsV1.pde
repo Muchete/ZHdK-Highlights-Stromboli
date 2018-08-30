@@ -37,7 +37,7 @@ void setup() {
 }
 
 void draw() {
-	background(255, 120);
+	// background(255, 120);
 	lineHandler.update(allTargets);
 
 	if (allTargets.size() > 0){

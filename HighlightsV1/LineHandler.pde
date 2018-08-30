@@ -1,12 +1,23 @@
 class LineHandler {
 
 	//SETTINGS:
+	PImage[] graphics;
 
 	//REQUIREMENTS
 	int targetAmount = 0;
 	ArrayList<StoneLine> allLines = new ArrayList<StoneLine>();
 
 	LineHandler () {
+
+		loadGraphics();
+	
+	}
+
+	void loadGraphics(){
+		graphics = new PImage[3]; //set amount of images
+		graphics[0] = loadImage("img/stone1.png");
+		graphics[1] = loadImage("img/stone2.png");
+		graphics[2] = loadImage("img/stone3.png");
 	}
 
 	void update(ArrayList<PVector> targets) {

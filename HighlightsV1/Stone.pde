@@ -2,11 +2,12 @@ class Stone {
 
 	//SETTINGS:
 
-	float _randomness = 45;
-	float _stepMaximum = 25;
-	float _stepMinimum = 20;
+	float _randomness = 45; //randomness
+	float _stepMaximum = 25; //step max
+	float _stepMinimum = 20; //step min
 
 	float _alpha = 255;
+	float birth;
 
 	//TABLE SETTINGS:
 	float leftBorder, rightBorder, topBorder, bottomBorder;
@@ -21,6 +22,7 @@ class Stone {
 	int axisBlock; //stores, on what surface of the box the stone currently is
 
 	Stone (PVector v) {
+		birth = millis();
 		_origin = v;
 		_randomness = random(-_randomness, _randomness);
 		_stepMaximum = random(_stepMinimum, _stepMaximum);
@@ -91,10 +93,10 @@ class Stone {
 
 	void collisionDetection() {
 
-	println("----------------");
-	println("_origin: " + _origin);
-	println("_tempTarget: "+_tempTarget);
-	println("_target: " + _target);
+	// println("----------------");
+	// println("_origin: " + _origin);
+	// println("_tempTarget: "+_tempTarget);
+	// println("_target: " + _target);
 
 		switch (axisBlock) {
 		case 0:
@@ -277,8 +279,8 @@ class Stone {
 			}
 			break;
 		}
-	println("_futureOrigin: " + _futureOrigin);
-	println("----------------");
+	// println("_futureOrigin: " + _futureOrigin);
+	// println("----------------");
 	}
 
 	PVector rotateRandom(PVector v) {
@@ -296,7 +298,6 @@ class Stone {
 
 	PVector rotateAroundX(PVector v, float theta){
 		float temp = v.y;
-		// Might need to check for rounding errors like with angleBetween function?
 
 		v.y = v.y * cos(theta) - v.z * sin(theta);
 		v.z = temp * sin(theta) + v.z * cos(theta);
@@ -305,7 +306,6 @@ class Stone {
 
 	PVector rotateAroundY(PVector v, float theta){
 		float temp = v.x;
-		// Might need to check for rounding errors like with angleBetween function?
 
 		v.x = v.x * cos(theta) + v.z * sin(theta);
 		v.z = -temp * sin(theta) + v.z * cos(theta);
@@ -352,7 +352,11 @@ class Stone {
 		if (!_fixed && !targetIsSet) { //dont draw until fixed
 			setTarget(targ);
 		} else {
-			fill(255, 0, 0, _alpha);
+
+			
+			
+
+			fill(255, 0, 0, map((millis() - birth)/1000,0,5,0,255));
 
 			if (_origin.z == z_size || _futureOrigin.z == z_size) {
 				pushMatrix();
