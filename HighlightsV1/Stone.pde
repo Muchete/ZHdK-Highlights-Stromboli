@@ -2,8 +2,9 @@ class Stone {
 
 	//SETTINGS:
 	float _randomness = 45; //randomness
-	float _stepMaximum = 15; //step max
-	float _stepMinimum = 12; //step min
+	float _stepMaximum = 13; //step max
+	float _stepMinimum = 8; //step min
+	float overlapFactor = 2;
 
 	float _alpha = 255;
 	float birth;
@@ -74,7 +75,7 @@ class Stone {
 		_futureOrigin = _target.copy();
 
 		_step = PVector.sub(_target, _origin);
-		_mag = _step.mag();
+		_mag = _step.mag() * overlapFactor;
 		_centerPoint = PVector.add(_origin, _step.div(2));
 
 		collisionDetection();
@@ -361,7 +362,7 @@ class Stone {
 
 			if (_origin.z == z_size || _futureOrigin.z == z_size) {
 				pushMatrix();
-				translate(-width / 2, -height / 2);
+				translate(-ultimateOrigin.x, -ultimateOrigin.y);
 				translate(offset + 3 * radius + offset, offset + z_size + offset + radius);
 				noStroke();
 				ellipseMode(CENTER);
@@ -374,7 +375,7 @@ class Stone {
 
 			if (_origin.z == 0.0 || _futureOrigin.z == 0.0) {
 				pushMatrix();
-				translate(-width / 2, -height / 2);
+				translate(-ultimateOrigin.x, -ultimateOrigin.y);
 				translate(offset + radius, offset + z_size + offset + radius);
 				noStroke();
 				ellipseMode(CENTER);
