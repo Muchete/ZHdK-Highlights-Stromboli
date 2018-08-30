@@ -1,7 +1,6 @@
 class LineHandler {
 
 	//SETTINGS:
-	PImage[] graphics;
 
 	//REQUIREMENTS
 	int targetAmount = 0;
@@ -14,10 +13,13 @@ class LineHandler {
 	}
 
 	void loadGraphics(){
-		graphics = new PImage[3]; //set amount of images
-		graphics[0] = loadImage("img/stone1.png");
-		graphics[1] = loadImage("img/stone2.png");
-		graphics[2] = loadImage("img/stone3.png");
+		graphics = new PImage[imageCount]; //set amount of images
+		for (int i = 0; i < imageCount; ++i) {
+			graphics[i] = loadImage("img/stone-0"+ (i+2) +".png");
+		}
+		// graphics[0] = loadImage("img/stone-02.png");
+		// graphics[1] = loadImage("img/stone-03.png");
+		// graphics[2] = loadImage("img/stone-04.png");
 	}
 
 	void update(ArrayList<PVector> targets) {
@@ -160,7 +162,7 @@ class LineHandler {
 			float bestStoneDist = PVector.dist(allLines.get(closestBranchLine).stoneList.get(stoneIndex)._target, newTarget);
 
 			if (bestStoneDist < PVector.dist(newTarget, stoneOrigin)) {
-				println("DOING BRANCH!");
+				// println("DOING BRANCH!");
 				createBranch(closestBranchLine, stoneIndex, allTargets.size() - 1);
 			} else {
 				allLines.add(new StoneLine(stoneOrigin, allTargets.size() - 1));

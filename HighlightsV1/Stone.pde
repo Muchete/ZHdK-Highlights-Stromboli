@@ -5,6 +5,7 @@ class Stone {
 	float _stepMaximum = 13; //step max
 	float _stepMinimum = 8; //step min
 	float overlapFactor = 2;
+	float fadeTime = 5; //time for fading in seconds
 
 	float _alpha = 255;
 	float birth;
@@ -16,7 +17,9 @@ class Stone {
 	boolean isBranchStone = false;
 	boolean targetIsSet = false;
 	boolean dead = false;
-	int deathTime;
+	boolean omegaDead = true;
+	int imgNo;
+	int deathTime = 0;
 	float _mag;
 	PVector _origin, _target, _tempTarget, _futureOrigin, _step, _centerPoint;
 	boolean _fixed = false;
@@ -25,6 +28,9 @@ class Stone {
 
 	Stone (PVector v) {
 		birth = millis();
+
+		imgNo = int(random(0, imageCount));
+
 		_origin = v;
 		_randomness = random(-_randomness, _randomness);
 		_stepMaximum = random(_stepMinimum, _stepMaximum);
@@ -85,7 +91,6 @@ class Stone {
 
 	boolean targetOnTableCheck(){
 		if (_tempTarget.x > leftBorder && rightBorder > _tempTarget.x && _tempTarget.y > topBorder && bottomBorder > _tempTarget.y){
-			println("TARGET ON TABLE");
 			_tempTarget.z = z_size;
 			return true;
 		} else {
@@ -334,6 +339,23 @@ class Stone {
 		_fixed = true;
 	}
 
+	void setAlpha(){
+
+		if (!dead){
+			_alpha = map((millis() - birth)/1000,0,fadeTime,0,255);
+		} else {
+			if (deathTime == 0){
+				deathTime = millis();
+			}
+
+			_alpha = map((millis() - deathTime)/1000,0,fadeTime,255,0);
+			
+			if (_alpha >= 255){
+				omegaDead = true;
+			}
+		}
+	}
+
 	void drawStone(PVector targ) {
 
 		if (!_fixed && !targetIsSet) { //dont draw until fixed
@@ -349,27 +371,37 @@ class Stone {
 		}
 	}
 
+	void drawThingy(float x, float y, float size, float angle){
+
+		imageMode(CENTER);
+		tint(255,_alpha);
+		image(graphics[imgNo], x, y, size, size);
+
+	}
+
 //draw the stones according to its position on the mapping fields
 	void drawMapping(PVector targ) {
 		if (!_fixed && !targetIsSet) { //dont draw until fixed
 			setTarget(targ);
 		} else {
 
-			
-			
+			setAlpha();
 
-			fill(255, 0, 0, map((millis() - birth)/1000,0,5,0,255));
+			fill(255, 0, 0, _alpha);
 
 			if (_origin.z == z_size || _futureOrigin.z == z_size) {
 				pushMatrix();
 				translate(-ultimateOrigin.x, -ultimateOrigin.y);
 				translate(offset + 3 * radius + offset, offset + z_size + offset + radius);
 				noStroke();
-				ellipseMode(CENTER);
-				ellipse(_centerPoint.x, _centerPoint.y, _mag, _mag);
 
-				stroke(0, _alpha);
-				line(_origin.x, _origin.y, _target.x, _target.y);
+				drawThingy(_centerPoint.x, _centerPoint.y, _mag, _mag);
+
+				// ellipseMode(CENTER);
+				// ellipse(_centerPoint.x, _centerPoint.y, _mag, _mag);
+
+				// stroke(0, _alpha);
+				// line(_origin.x, _origin.y, _target.x, _target.y);
 				popMatrix();
 			}
 
@@ -378,11 +410,14 @@ class Stone {
 				translate(-ultimateOrigin.x, -ultimateOrigin.y);
 				translate(offset + radius, offset + z_size + offset + radius);
 				noStroke();
-				ellipseMode(CENTER);
-				ellipse(_centerPoint.x, _centerPoint.y, _mag, _mag);
 
-				stroke(0, _alpha);
-				line(_origin.x, _origin.y, _target.x, _target.y);
+				drawThingy(_centerPoint.x, _centerPoint.y, _mag, _mag);
+
+				// ellipseMode(CENTER);
+				// ellipse(_centerPoint.x, _centerPoint.y, _mag, _mag);
+
+				// stroke(0, _alpha);
+				// line(_origin.x, _origin.y, _target.x, _target.y);
 				popMatrix();
 			}
 
@@ -390,8 +425,11 @@ class Stone {
 				pushMatrix();
 				translate(offset, offset);
 				noStroke();
-				ellipseMode(CENTER);
-				ellipse(_centerPoint.y - topBorder, z_size - _centerPoint.z, _mag, _mag);
+
+				drawThingy(_centerPoint.y - topBorder, z_size - _centerPoint.z, _mag, _mag);
+
+				// ellipseMode(CENTER);
+				// ellipse(_centerPoint.y - topBorder, z_size - _centerPoint.z, _mag, _mag);
 				popMatrix();
 
 			}
@@ -400,8 +438,11 @@ class Stone {
 				pushMatrix();
 				translate(offset + y_size + x_size, offset);
 				noStroke();
-				ellipseMode(CENTER);
-				ellipse(y_size - _centerPoint.y + topBorder, z_size - _centerPoint.z, _mag, _mag);
+
+				drawThingy(y_size - _centerPoint.y + topBorder, z_size - _centerPoint.z, _mag, _mag);
+
+				// ellipseMode(CENTER);
+				// ellipse(y_size - _centerPoint.y + topBorder, z_size - _centerPoint.z, _mag, _mag);
 				popMatrix();	
 			}
 
@@ -409,8 +450,11 @@ class Stone {
 				pushMatrix();
 				translate(offset + y_size + x_size + y_size, offset);
 				noStroke();
-				ellipseMode(CENTER);
-				ellipse(x_size - _centerPoint.x + leftBorder, z_size - _centerPoint.z, _mag, _mag);
+
+				drawThingy(x_size - _centerPoint.x + leftBorder, z_size - _centerPoint.z, _mag, _mag);
+
+				// ellipseMode(CENTER);
+				// ellipse(x_size - _centerPoint.x + leftBorder, z_size - _centerPoint.z, _mag, _mag);
 				popMatrix();	
 			}
 
@@ -418,8 +462,11 @@ class Stone {
 				pushMatrix();
 				translate(offset + y_size, offset);
 				noStroke();
-				ellipseMode(CENTER);
-				ellipse(_centerPoint.x - leftBorder, z_size - _centerPoint.z, _mag, _mag);
+
+				drawThingy(_centerPoint.x - leftBorder, z_size - _centerPoint.z, _mag, _mag);
+
+				// ellipseMode(CENTER);
+				// ellipse(_centerPoint.x - leftBorder, z_size - _centerPoint.z, _mag, _mag);
 				popMatrix();	
 			}
 		}

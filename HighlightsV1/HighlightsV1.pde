@@ -6,10 +6,12 @@ SyphonServer server;
 //SETTINGS:
 PVector stoneOrigin = new PVector(460,530); //physical stone position
 PVector ultimateOrigin = new PVector(500, 500); //physical TABLE positon
+int imageCount = 3;
 
 //REQUIREMENTS:
 LineHandler lineHandler;
 ArrayList<PVector> allTargets = new ArrayList<PVector>();
+PImage[] graphics;
 
 //3D SCENE PARAMETERS
 float factor = 1.5;
