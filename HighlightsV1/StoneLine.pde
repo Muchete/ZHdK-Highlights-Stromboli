@@ -57,9 +57,14 @@ class StoneLine {
 	void drawStoneLineMapping() {
 		if (!empty) {
 			//draws all the stones
-			for (Stone aStone : stoneList) {
-				aStone.drawMapping(_myTarget);
+			// for (Stone aStone : stoneList) {
+			// 	aStone.drawMapping(_myTarget);
+			// }
+
+			for (int i = stoneList.size()-1; i >= 0; --i) {
+				stoneList.get(i).drawMapping(_myTarget);
 			}
+
 		}
 	}
 
@@ -81,10 +86,16 @@ class StoneLine {
 		if (stoneList.size() > 0) {
 			//check if stone is branched.
 			int newestStone = stoneList.size() - 1;
-			if (!stoneList.get(newestStone).isBranchStone) {
 
-				stoneList.get(newestStone).dead = true;
-				
+			//remove all omegaDead ones
+			// for (int i = stoneList.size()-1; i >= 0; --i) {
+			// 	if (stoneList.get(i).omegaDead) {
+			// 		stoneList.remove(i);
+			// 	}
+			// }
+
+			//set latest undead one to dead
+			if (!stoneList.get(newestStone).isBranchStone) {
 
 
 

@@ -371,11 +371,13 @@ class Stone {
 		}
 	}
 
-	void drawThingy(float x, float y, float size, float angle){
+	void drawThingy(float x, float y, float size){
 
 		imageMode(CENTER);
 		tint(255,_alpha);
-		image(graphics[imgNo], x, y, size, size);
+		translate(x, y);
+		rotate(-atan2(_target.x - _origin.x, _target.y - _origin.y));
+		image(graphics[imgNo], 0, 0, size, size);
 
 	}
 
@@ -392,10 +394,11 @@ class Stone {
 			if (_origin.z == z_size || _futureOrigin.z == z_size) {
 				pushMatrix();
 				translate(-ultimateOrigin.x, -ultimateOrigin.y);
+
 				translate(offset + 3 * radius + offset, offset + z_size + offset + radius);
 				noStroke();
 
-				drawThingy(_centerPoint.x, _centerPoint.y, _mag, _mag);
+				drawThingy(_centerPoint.x, _centerPoint.y, _mag);
 
 				// ellipseMode(CENTER);
 				// ellipse(_centerPoint.x, _centerPoint.y, _mag, _mag);
@@ -411,7 +414,7 @@ class Stone {
 				translate(offset + radius, offset + z_size + offset + radius);
 				noStroke();
 
-				drawThingy(_centerPoint.x, _centerPoint.y, _mag, _mag);
+				drawThingy(_centerPoint.x, _centerPoint.y, _mag);
 
 				// ellipseMode(CENTER);
 				// ellipse(_centerPoint.x, _centerPoint.y, _mag, _mag);
@@ -426,7 +429,7 @@ class Stone {
 				translate(offset, offset);
 				noStroke();
 
-				drawThingy(_centerPoint.y - topBorder, z_size - _centerPoint.z, _mag, _mag);
+				drawThingy(_centerPoint.y - topBorder, z_size - _centerPoint.z, _mag);
 
 				// ellipseMode(CENTER);
 				// ellipse(_centerPoint.y - topBorder, z_size - _centerPoint.z, _mag, _mag);
@@ -439,7 +442,7 @@ class Stone {
 				translate(offset + y_size + x_size, offset);
 				noStroke();
 
-				drawThingy(y_size - _centerPoint.y + topBorder, z_size - _centerPoint.z, _mag, _mag);
+				drawThingy(y_size - _centerPoint.y + topBorder, z_size - _centerPoint.z, _mag);
 
 				// ellipseMode(CENTER);
 				// ellipse(y_size - _centerPoint.y + topBorder, z_size - _centerPoint.z, _mag, _mag);
@@ -451,7 +454,7 @@ class Stone {
 				translate(offset + y_size + x_size + y_size, offset);
 				noStroke();
 
-				drawThingy(x_size - _centerPoint.x + leftBorder, z_size - _centerPoint.z, _mag, _mag);
+				drawThingy(x_size - _centerPoint.x + leftBorder, z_size - _centerPoint.z, _mag);
 
 				// ellipseMode(CENTER);
 				// ellipse(x_size - _centerPoint.x + leftBorder, z_size - _centerPoint.z, _mag, _mag);
@@ -463,7 +466,7 @@ class Stone {
 				translate(offset + y_size, offset);
 				noStroke();
 
-				drawThingy(_centerPoint.x - leftBorder, z_size - _centerPoint.z, _mag, _mag);
+				drawThingy(_centerPoint.x - leftBorder, z_size - _centerPoint.z, _mag);
 
 				// ellipseMode(CENTER);
 				// ellipse(_centerPoint.x - leftBorder, z_size - _centerPoint.z, _mag, _mag);
