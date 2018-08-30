@@ -151,7 +151,7 @@ class LineHandler {
 
 				for (int s = 1; s < thisLine.stoneList.size() - 1; ++s) {
 					float newDist = PVector.dist(thisLine.stoneList.get(s)._target, newTarget);
-					if (newDist < closestBranchDist) {
+					if (newDist < closestBranchDist && !thisLine.stoneList.get(s).dead) {
 						closestBranchDist = newDist;
 						stoneIndex = s;
 						closestBranchLine = l;

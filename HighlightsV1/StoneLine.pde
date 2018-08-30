@@ -85,22 +85,27 @@ class StoneLine {
 	void decayStone() {
 		if (stoneList.size() > 0) {
 			//check if stone is branched.
-			int newestStone = stoneList.size() - 1;
+			// int newestStone = stoneList.size() - 1;
 
 			//remove all omegaDead ones
-			// for (int i = stoneList.size()-1; i >= 0; --i) {
-			// 	if (stoneList.get(i).omegaDead) {
-			// 		stoneList.remove(i);
-			// 	}
-			// }
-
-			//set latest undead one to dead
-			if (!stoneList.get(newestStone).isBranchStone) {
-
-
-
-				stoneList.remove(newestStone); //get latest stone
+			for (int i = stoneList.size()-1; i > 0; --i) {
+				if (stoneList.get(i).omegaDead) {
+					stoneList.remove(i);
+				}
 			}
+
+			boolean isSet = false;
+			//set last undead one to dead
+			for (int i = stoneList.size()-1; i > 0; --i) {
+				if (!isSet && !stoneList.get(i).dead) {
+					stoneList.get(i).dead = true;
+					isSet = true;
+				}
+			}
+
+			// if (!stoneList.get(newestStone).isBranchStone) {
+			// 	stoneList.remove(newestStone); //get latest stone
+			// }
 		} else {
 			//remove this line
 			empty = true;

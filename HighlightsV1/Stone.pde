@@ -17,7 +17,7 @@ class Stone {
 	boolean isBranchStone = false;
 	boolean targetIsSet = false;
 	boolean dead = false;
-	boolean omegaDead = true;
+	boolean omegaDead = false;
 	int imgNo;
 	int deathTime = 0;
 	float _mag;
@@ -29,7 +29,7 @@ class Stone {
 	Stone (PVector v) {
 		birth = millis();
 
-		imgNo = int(random(0, imageCount));
+		imgNo = int(random(imageCount));
 
 		_origin = v;
 		_randomness = random(-_randomness, _randomness);
@@ -348,9 +348,11 @@ class Stone {
 				deathTime = millis();
 			}
 
-			_alpha = map((millis() - deathTime)/1000,0,fadeTime,255,0);
+			// if (_alpha > map((millis() - deathTime)/1000,0,fadeTime,255,0)){
+				_alpha = map((millis() - deathTime)/1000,0,fadeTime,255,0);
+			// }
 			
-			if (_alpha >= 255){
+			if (_alpha <= 0){
 				omegaDead = true;
 			}
 		}
