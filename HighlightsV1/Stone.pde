@@ -14,6 +14,8 @@ class Stone {
 	//REQUIREMENTS
 	boolean isBranchStone = false;
 	boolean targetIsSet = false;
+	boolean dead = false;
+	int deathTime;
 	float _mag;
 	PVector _origin, _target, _tempTarget, _futureOrigin, _step, _centerPoint;
 	boolean _fixed = false;

@@ -4,7 +4,8 @@ import codeanticode.syphon.*;
 SyphonServer server;
 
 //SETTINGS:
-PVector ultimateOrigin = new PVector(500, 500); //physical stone position
+PVector stoneOrigin = new PVector(500,400); //physical stone position
+PVector ultimateOrigin = new PVector(500, 500); //physical table positon
 
 //REQUIREMENTS:
 LineHandler lineHandler;

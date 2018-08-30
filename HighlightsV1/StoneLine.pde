@@ -80,8 +80,15 @@ class StoneLine {
 	void decayStone() {
 		if (stoneList.size() > 0) {
 			//check if stone is branched.
-			if (!stoneList.get(stoneList.size() - 1).isBranchStone) {
-				stoneList.remove(stoneList.size() - 1); //get latest stone
+			int newestStone = stoneList.size() - 1;
+			if (!stoneList.get(newestStone).isBranchStone) {
+
+				stoneList.get(newestStone).dead = true;
+				
+
+
+
+				stoneList.remove(newestStone); //get latest stone
 			}
 		} else {
 			//remove this line
