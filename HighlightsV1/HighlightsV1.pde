@@ -11,7 +11,6 @@ boolean touched = false;
 int lowerThreshold = 700;
 int upperThreshold = 930;
 
-ArrayList<PVector> allTargets = new ArrayList<PVector>();
 PVector centerPoint;
 
 //COMMUNICATION WITH RESOLUME
@@ -20,7 +19,7 @@ SyphonServer server;
 //SETTINGS:
 PVector stoneOrigin = new PVector(460,530); //physical stone position
 PVector ultimateOrigin = new PVector(500, 500); //physical TABLE positon
-int imageCount = 3;
+int imageCount = 9;
 
 //REQUIREMENTS:
 LineHandler lineHandler;
@@ -65,7 +64,7 @@ void setup() {
 	//set origin of "first stone"
 	lineHandler = new LineHandler();
 
-	allTargets.add(new PVector());
+	//allTargets.add(new PVector());
 }
 
 void draw() {
@@ -92,17 +91,21 @@ void draw() {
 
     result.updatePixels();
 
-    // image(result, 0, 0);
+    
 
     blobHandler.update(result);
-    allTargets = blobHandler.activeBlobs(centerPoint, 300, 250);
-
+    allTargets = blobHandler.activeBlobs(centerPoint, 0, 250);
+    
+    println(allTargets);
+    
 	// background(255, 120);
 	lineHandler.update(allTargets);
 
 	// if (allTargets.size() > 0){
 	// 	allTargets.get(0).set(mouseX, mouseY, 0);
 	// }
+
+  //image(result, 0, 0);
 
 	server.sendScreen();
 }

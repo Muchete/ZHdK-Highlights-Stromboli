@@ -70,7 +70,21 @@ class LineHandler {
 		noStroke();
 		rectMode(CENTER);
 		rect(offset + 3 * radius + offset, offset + z_size + offset + radius, x_size, y_size);
-	}
+	
+  //draw targets
+  pushMatrix();
+        translate(-ultimateOrigin.x, -ultimateOrigin.y);
+        translate(offset + radius, offset + z_size + offset + radius);
+        noStroke();
+
+  for (PVector v : allTargets){
+    noStroke();
+    fill(255,0,0);
+    ellipse(v.x,v.y,25,25);    
+  }
+        popMatrix();
+
+}
 
 	void removeEmptyLines() {
 		//check all lines
