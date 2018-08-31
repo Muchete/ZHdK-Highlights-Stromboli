@@ -7,7 +7,7 @@ class Stone {
 	float overlapFactor = 2;
 	float fadeTime = 5; //time for fading in seconds
 
-	float _alpha = 255;
+	float _alpha = 0;
 	float birth;
 
 	//TABLE SETTINGS:
