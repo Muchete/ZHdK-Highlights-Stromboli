@@ -4,6 +4,7 @@ class BlobHandler {
 	int blobCounter = 0;
 
 	int maxLife = 50;
+  int minSize = 2000;
 
 	public float threshold = 40;
 	public float distThreshold = 50;
@@ -54,7 +55,7 @@ class BlobHandler {
 	    }
 
 	    for (int i = currentBlobs.size()-1; i >= 0; i--) {
-	        if (currentBlobs.get(i).size() < 2000) {
+	        if (currentBlobs.get(i).size() < minSize) {
 	            currentBlobs.remove(i);
 	        }
 	    }

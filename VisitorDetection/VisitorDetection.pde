@@ -7,8 +7,8 @@ BlobHandler blobHandler;
 boolean touched = false;
 int radius;
 
-int lowerThreshold = 0;
-int upperThreshold = 900;
+int lowerThreshold = 700;
+int upperThreshold = 930;
 
 ArrayList<PVector> allTargets = new ArrayList<PVector>();
 PVector centerPoint;
@@ -80,15 +80,14 @@ void keyPressed() {
 
     if (key == CODED) {
         if (keyCode == UP) {
-            upperThreshold += 1;
+            blobHandler.minSize += 1;
         } else if (keyCode == DOWN) {
-            upperThreshold -= 1;
+            blobHandler.minSize -= 1;
         }
     }
-    println(upperThreshold);
+    println(blobHandler.minSize);
 }
 
 void mouseClicked() {
     centerPoint = new PVector(mouseX, mouseY);
 }
-
