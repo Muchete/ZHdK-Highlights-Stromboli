@@ -171,7 +171,7 @@
 			</Params>
 			<Transport name="Transport">
 				<Params name="Params">
-					<ParamRange name="Position" default="0" value="2790.9635850000145183">
+					<ParamRange name="Position" default="0" value="2835.7763889992565964">
 						<BehaviourDouble name="BehaviourDouble">
 							<PhaseSourceTimeline name="PhaseSourceTimeline" globalSpeedEnabled="1">
 								<Params name="Params">
@@ -192,12 +192,17 @@
 				</Params>
 			</Transport>
 			<ClipView name="ClipView">
-				<FoldParams name="FoldParams"/>
+				<FoldParams name="FoldParams">
+					<FoldState component="/clipproperties/transport/" folded="0"/>
+					<FoldState component="/groupedcomponent/videotrackinfocomponent/" folded="0"/>
+					<FoldState component="/groupedcomponent/videotrackinfocomponent/tracksettingscomponent/" folded="0"/>
+					<FoldState component="/groupedcomponent/videotrackinfocomponent/tracksettingscomponent/videosettingscomponent/" folded="0"/>
+				</FoldParams>
 			</ClipView>
 			<VideoTrack name="VideoTrack" manualDuration="0">
 				<Params name="Params">
-					<ParamRange storage="3" name="Width" default="1000" value="1000"/>
-					<ParamRange storage="3" name="Height" default="1000" value="1000"/>
+					<ParamRange storage="3" name="Width" default="1920" value="1920"/>
+					<ParamRange storage="3" name="Height" default="1080" value="1080"/>
 					<Param storage="3" name="RScale" default="1" value="1"/>
 					<Param storage="3" name="GScale" default="1" value="1"/>
 					<Param storage="3" name="BScale" default="1" value="1"/>
@@ -210,7 +215,7 @@
 				</RenderPass>
 				<ChoosableMixer name="Blend"/>
 				<PrimarySource>
-					<VideoSource storage="0" name="VideoSource" width="1000" height="1000" type="SyphonVideoSource" serverName="HighlightsV1 - Processing" serverUuid="info.v002.Syphon.527E1959-AAE0-45A3-982E-75BF0B334AE6">
+					<VideoSource storage="0" name="VideoSource" width="1920" height="1080" type="SyphonVideoSource" serverName="HighlightsV1 - Processing" serverUuid="info.v002.Syphon.264EAA00-CE10-4B95-927A-213083521013">
 						<SyphonInfo serverName="HighlightsV1 - Processing"/>
 						<RenderPass name="RenderPassChain" type="RenderPassChain" uniqueId="RenderPassChain" baseType="RenderPassChain"/>
 					</VideoSource>
