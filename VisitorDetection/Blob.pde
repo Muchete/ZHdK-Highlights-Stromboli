@@ -98,4 +98,3 @@ class Blob {
         return d;
     }
 }
-

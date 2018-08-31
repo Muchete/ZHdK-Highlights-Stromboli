@@ -7,6 +7,19 @@ class LineHandler {
 	ArrayList<StoneLine> allLines = new ArrayList<StoneLine>();
 
 	LineHandler () {
+
+		loadGraphics();
+	
+	}
+
+	void loadGraphics(){
+		graphics = new PImage[imageCount]; //set amount of images
+		for (int i = 0; i < imageCount; ++i) {
+			graphics[i] = loadImage("img/stone-0"+ (i+2) +".png");
+		}
+		// graphics[0] = loadImage("img/stone-02.png");
+		// graphics[1] = loadImage("img/stone-03.png");
+		// graphics[2] = loadImage("img/stone-04.png");
 	}
 
 	void update(ArrayList<PVector> targets) {
@@ -120,12 +133,12 @@ class LineHandler {
 	void addLine() {
 
 		if (allLines.size() == 0) {
-			allLines.add(new StoneLine(ultimateOrigin, allTargets.size() - 1));
+			allLines.add(new StoneLine(stoneOrigin, allTargets.size() - 1));
 		} else {
 
 			PVector newTarget = allTargets.get(allTargets.size() - 1);
 
-			float firstDistance = PVector.dist(newTarget, ultimateOrigin);
+			float firstDistance = PVector.dist(newTarget, stoneOrigin);
 			float closestDistance = firstDistance;
 			int closestBranchLine = 0;
 			int stoneIndex = 0;
@@ -138,7 +151,7 @@ class LineHandler {
 
 				for (int s = 1; s < thisLine.stoneList.size() - 1; ++s) {
 					float newDist = PVector.dist(thisLine.stoneList.get(s)._target, newTarget);
-					if (newDist < closestBranchDist) {
+					if (newDist < closestBranchDist && !thisLine.stoneList.get(s).dead) {
 						closestBranchDist = newDist;
 						stoneIndex = s;
 						closestBranchLine = l;
@@ -148,11 +161,11 @@ class LineHandler {
 
 			float bestStoneDist = PVector.dist(allLines.get(closestBranchLine).stoneList.get(stoneIndex)._target, newTarget);
 
-			if (bestStoneDist < PVector.dist(newTarget, ultimateOrigin)) {
-				println("DOING BRANCH!");
+			if (bestStoneDist < PVector.dist(newTarget, stoneOrigin)) {
+				// println("DOING BRANCH!");
 				createBranch(closestBranchLine, stoneIndex, allTargets.size() - 1);
 			} else {
-				allLines.add(new StoneLine(ultimateOrigin, allTargets.size() - 1));
+				allLines.add(new StoneLine(stoneOrigin, allTargets.size() - 1));
 			}
 		}
 	}
@@ -185,7 +198,7 @@ class LineHandler {
 		for (int t = 0; t < allTargets.size(); ++t) {
 			PVector thisTarget = allTargets.get(t);
 
-			float firstDistance = PVector.dist(thisTarget, ultimateOrigin);
+			float firstDistance = PVector.dist(thisTarget, stoneOrigin);
 			float closestDistance = firstDistance;
 			int closestLine = 0;
 
@@ -211,7 +224,7 @@ class LineHandler {
 				assignTarget(closestLine, t);
 			} else {
 				//if origin was closer, create new line
-				allLines.add(new StoneLine(ultimateOrigin, t));
+				allLines.add(new StoneLine(stoneOrigin, t));
 			}
 		}
 	}

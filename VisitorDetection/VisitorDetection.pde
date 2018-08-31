@@ -6,6 +6,7 @@ BlobHandler blobHandler;
 
 boolean touched = false;
 int radius;
+PVector _ultimateOrigins = new PVector(500, 500);
 
 int lowerThreshold = 700;
 int upperThreshold = 930;
@@ -21,7 +22,7 @@ void setup() {
 
     blobHandler = new BlobHandler();
 
-    radius = int(height * 0.75);
+    radius = 200;
 
     centerPoint = new PVector(width/2, height/2);
 }

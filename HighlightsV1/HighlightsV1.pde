@@ -1,34 +1,45 @@
 import codeanticode.syphon.*;
+import ddf.minim.*;
 
 //COMMUNICATION WITH RESOLUME
 SyphonServer server;
 
 //SETTINGS:
-PVector ultimateOrigin = new PVector(500, 500); //physical stone position
+PVector stoneOrigin = new PVector(460,530); //physical stone position
+PVector ultimateOrigin = new PVector(500, 500); //physical TABLE positon
+int imageCount = 3;
 
 //REQUIREMENTS:
 LineHandler lineHandler;
+Minim m = new Minim (this);
+SoundHandler soundHandler;
 ArrayList<PVector> allTargets = new ArrayList<PVector>();
+PImage[] graphics;
 
 //3D SCENE PARAMETERS
-float x_size = 160; //80cm
-float y_size = 96; //48cm
-float z_size = 115; //57.5cm
-float radius = 200;
+float factor = 1.7;
+float x_size = 160 * factor; //80cm
+float y_size = 96 * factor; //48cm
+float z_size = 115 * factor; //57.5cm
+float radius = 200 * factor;
 
 //2D SCENE PARAMETERS
-int offset = 10; // defines the space between the mapping fields
+int offset = 20; // defines the space between the mapping fields
 
 //------------------------------------------------------------------
 
 void setup() {
-	size(1000, 1000, P3D);
+	size(1920, 1080, P3D);
 
 	//create syphon server for sending the screen to resolume
 	server = new SyphonServer(this, "Processing");
 
 	//set table size in ultimateOrigin vector
 	ultimateOrigin.z = z_size;
+	stoneOrigin.z = z_size;
+
+	//load sounds
+	soundHandler = new SoundHandler();
 
 	//set origin of "first stone"
 	lineHandler = new LineHandler();
@@ -37,7 +48,7 @@ void setup() {
 }
 
 void draw() {
-	background(255, 120);
+	// background(255, 120);
 	lineHandler.update(allTargets);
 
 	if (allTargets.size() > 0){
@@ -52,6 +63,7 @@ void mouseClicked() {
 	allTargets.add(new PVector(mouseX, mouseY, 0));
 	println("added Target Nr. "+allTargets.size()+"!");
 	println("allTargets: "+allTargets);
+	// soundHandler.playRandom();
 }
 
 //for debugging only
