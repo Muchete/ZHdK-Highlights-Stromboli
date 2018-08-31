@@ -17,7 +17,7 @@ PVector centerPoint;
 SyphonServer server;
 
 //SETTINGS:
-PVector stoneOrigin = new PVector(460,530); //physical stone position
+PVector stoneOrigin = new PVector(460,460); //physical stone position
 PVector ultimateOrigin = new PVector(500, 500); //physical TABLE positon
 int imageCount = 9;
 
