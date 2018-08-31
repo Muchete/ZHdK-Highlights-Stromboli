@@ -171,7 +171,7 @@
 			</Params>
 			<Transport name="Transport">
 				<Params name="Params">
-					<ParamRange name="Position" default="0" value="2835.7763889992565964">
+					<ParamRange name="Position" default="0" value="271.43232000012693561">
 						<BehaviourDouble name="BehaviourDouble">
 							<PhaseSourceTimeline name="PhaseSourceTimeline" globalSpeedEnabled="1">
 								<Params name="Params">
@@ -215,7 +215,7 @@
 				</RenderPass>
 				<ChoosableMixer name="Blend"/>
 				<PrimarySource>
-					<VideoSource storage="0" name="VideoSource" width="1920" height="1080" type="SyphonVideoSource" serverName="HighlightsV1 - Processing" serverUuid="info.v002.Syphon.264EAA00-CE10-4B95-927A-213083521013">
+					<VideoSource storage="0" name="VideoSource" width="1920" height="1080" type="SyphonVideoSource" serverName="HighlightsV1 - Processing" serverUuid="info.v002.Syphon.EC3F92CB-BF22-4AC0-B93E-3C25AB95DF3F">
 						<SyphonInfo serverName="HighlightsV1 - Processing"/>
 						<RenderPass name="RenderPassChain" type="RenderPassChain" uniqueId="RenderPassChain" baseType="RenderPassChain"/>
 					</VideoSource>

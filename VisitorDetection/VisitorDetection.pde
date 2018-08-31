@@ -55,6 +55,8 @@ void draw() {
 
     blobHandler.update(result);
     allTargets = blobHandler.activeBlobs(centerPoint, 100, 150);
+    
+    println(allTargets);
 
     for (Blob b : blobHandler.blobs) {
         b.show();
