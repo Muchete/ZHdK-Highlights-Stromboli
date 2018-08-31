@@ -17,7 +17,7 @@ ArrayList<PVector> allTargets = new ArrayList<PVector>();
 PImage[] graphics;
 
 //3D SCENE PARAMETERS
-float factor = 1.5;
+float factor = 1.7;
 float x_size = 160 * factor; //80cm
 float y_size = 96 * factor; //48cm
 float z_size = 115 * factor; //57.5cm

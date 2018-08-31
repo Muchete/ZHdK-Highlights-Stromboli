@@ -343,8 +343,10 @@ class Stone {
 
 		if (!dead){
 			//fade until alpha is 255
-			if (_alpha < 255){
-				_alpha = map((millis() - birth)/1000,0,fadeTime,0,255);
+			_alpha = map((millis() - birth)/1000,0,fadeTime,0,255);
+
+			if (_alpha > 222) {
+				_alpha = 255;
 			}
 		} else {
 			if (deathTime == 0){

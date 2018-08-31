@@ -6,10 +6,7 @@ class SoundHandler {
 	//REQUIREMENTS
 	ArrayList<AudioPlayer> playerList = new ArrayList<AudioPlayer>();
 
-
 	SoundHandler () {
-
-
 		//load all samples defined above
 		for (int n = 0; n < filenames.length; ++n) {
 			loadSample(filenames[n]);
@@ -23,9 +20,8 @@ class SoundHandler {
 		println("added Sample: " + name);
 	}
 
-	// void play(){
-
-	// }
+	void play(){
+	}
 
 	void playRandom(){
 		int randomNo = int(random(filenames.length));
@@ -40,10 +36,4 @@ class SoundHandler {
 			p.rewind();
 		}
 	}
-
-	void softStop(){
-
-	}
-
-
 }
