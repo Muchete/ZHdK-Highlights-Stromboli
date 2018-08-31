@@ -84,28 +84,30 @@ class StoneLine {
 
 	void decayStone() {
 		if (stoneList.size() > 0) {
-			//check if stone is branched.
-			// int newestStone = stoneList.size() - 1;
+			//OLD VERSION
+			int newestStone = stoneList.size() - 1;
 
-			//remove all omegaDead ones
-			for (int i = stoneList.size()-1; i > 0; --i) {
-				if (stoneList.get(i).omegaDead) {
-					stoneList.remove(i);
-				}
+			if (!stoneList.get(newestStone).isBranchStone) {
+				stoneList.remove(newestStone); //get latest stone
 			}
 
-			boolean isSet = false;
-			//set last undead one to dead
-			for (int i = stoneList.size()-1; i > 0; --i) {
-				if (!isSet && !stoneList.get(i).dead) {
-					stoneList.get(i).dead = true;
-					isSet = true;
-				}
-			}
+			//new VERSION
+			// //remove all omegaDead ones
+			// // for (int i = stoneList.size()-1; i > 0; --i) {
+			// 	if (stoneList.get(newestStone).omegaDead && !stoneList.get(newestStone).isBranchStone) {
+			// 		stoneList.remove(newestStone);
+			// 	}
+			// // }
 
-			// if (!stoneList.get(newestStone).isBranchStone) {
-			// 	stoneList.remove(newestStone); //get latest stone
+			// boolean isSet = false;
+			// //set last undead one to dead
+			// for (int i = stoneList.size()-1; i > 0; --i) {
+			// 	if (!isSet && !stoneList.get(i).dead && !stoneList.get(i).isBranchStone) {
+			// 		stoneList.get(i).dead = true;
+			// 		isSet = true;
+			// 	}
 			// }
+
 		} else {
 			//remove this line
 			empty = true;

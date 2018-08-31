@@ -18,8 +18,8 @@ class Stone {
 	boolean targetIsSet = false;
 	boolean dead = false;
 	boolean omegaDead = false;
-	int imgNo;
 	int deathTime = 0;
+	int imgNo;
 	float _mag;
 	PVector _origin, _target, _tempTarget, _futureOrigin, _step, _centerPoint;
 	boolean _fixed = false;
@@ -342,17 +342,28 @@ class Stone {
 	void setAlpha(){
 
 		if (!dead){
-			_alpha = map((millis() - birth)/1000,0,fadeTime,0,255);
+			//fade until alpha is 255
+			if (_alpha < 255){
+				_alpha = map((millis() - birth)/1000,0,fadeTime,0,255);
+			}
 		} else {
 			if (deathTime == 0){
 				deathTime = millis();
 			}
 
-			// if (_alpha > map((millis() - deathTime)/1000,0,fadeTime,255,0)){
+			if (_alpha > 0){
+
 				_alpha = map((millis() - deathTime)/1000,0,fadeTime,255,0);
-			// }
+
+				// if (_alpha > map((millis() - deathTime)/1000,0,fadeTime,255,0)){
+				
+				// }
+
+			} else {
+				omegaDead = true;
+			}
 			
-			if (_alpha <= 0){
+			if (_alpha == 0){
 				omegaDead = true;
 			}
 		}
@@ -390,6 +401,13 @@ class Stone {
 		} else {
 
 			setAlpha();
+
+			// println("isBranchStone: "+isBranchStone);
+			// println("dead: "+dead);
+			// println("omegaDead: "+omegaDead);
+			// println("deathTime: "+deathTime);
+			// println("_alpha: "+_alpha);
+			// println("------------------------------");
 
 			fill(255, 0, 0, _alpha);
 

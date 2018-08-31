@@ -1,4 +1,5 @@
 import codeanticode.syphon.*;
+import ddf.minim.*;
 
 //COMMUNICATION WITH RESOLUME
 SyphonServer server;
@@ -10,6 +11,8 @@ int imageCount = 3;
 
 //REQUIREMENTS:
 LineHandler lineHandler;
+Minim m = new Minim (this);
+SoundHandler soundHandler;
 ArrayList<PVector> allTargets = new ArrayList<PVector>();
 PImage[] graphics;
 
@@ -35,7 +38,8 @@ void setup() {
 	ultimateOrigin.z = z_size;
 	stoneOrigin.z = z_size;
 
-
+	//load sounds
+	soundHandler = new SoundHandler();
 
 	//set origin of "first stone"
 	lineHandler = new LineHandler();
@@ -59,6 +63,7 @@ void mouseClicked() {
 	allTargets.add(new PVector(mouseX, mouseY, 0));
 	println("added Target Nr. "+allTargets.size()+"!");
 	println("allTargets: "+allTargets);
+	// soundHandler.playRandom();
 }
 
 //for debugging only
