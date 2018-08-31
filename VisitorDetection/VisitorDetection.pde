@@ -8,8 +8,8 @@ boolean touched = false;
 int radius;
 PVector _ultimateOrigins = new PVector(500, 500);
 
-int lowerThreshold = 0;
-int upperThreshold = 900;
+int lowerThreshold = 700;
+int upperThreshold = 930;
 
 ArrayList<PVector> allTargets = new ArrayList<PVector>();
 PVector centerPoint;
@@ -55,6 +55,8 @@ void draw() {
 
     blobHandler.update(result);
     allTargets = blobHandler.activeBlobs(centerPoint, 100, 150);
+    
+    println(allTargets);
 
     for (Blob b : blobHandler.blobs) {
         b.show();
@@ -81,12 +83,12 @@ void keyPressed() {
 
     if (key == CODED) {
         if (keyCode == UP) {
-            upperThreshold += 1;
+            blobHandler.minSize += 1;
         } else if (keyCode == DOWN) {
-            upperThreshold -= 1;
+            blobHandler.minSize -= 1;
         }
     }
-    println(upperThreshold);
+    println(blobHandler.minSize);
 }
 
 void mouseClicked() {

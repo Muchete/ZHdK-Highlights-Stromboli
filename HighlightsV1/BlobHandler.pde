@@ -4,7 +4,7 @@ class BlobHandler {
 	int blobCounter = 0;
 
 	int maxLife = 50;
-  int minSize = 2000;
+  int minSize = 5000;
 
 	public float threshold = 40;
 	public float distThreshold = 50;
@@ -140,8 +140,8 @@ class BlobHandler {
 	        if (distance > inner && distance < outer) {
 	        	PVector mappedCoordinates = b.getCenter().copy();
 
-	        	mappedCoordinates.x = mappedCoordinates.x - center.x + _ultimateOrigins.x;
-	        	mappedCoordinates.y = mappedCoordinates.y - center.y + _ultimateOrigins.y;
+	        	mappedCoordinates.x = (640 - mappedCoordinates.x) - center.x + ultimateOrigin.x / 2;
+	        	mappedCoordinates.y = (480 - mappedCoordinates.y) - center.y + ultimateOrigin.y / 2;
 
 	        	mappedCoordinates = mappedCoordinates.div(400).mult(radius * 2);
 
