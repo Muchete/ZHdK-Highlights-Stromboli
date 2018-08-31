@@ -9,17 +9,14 @@ class LineHandler {
 	LineHandler () {
 
 		loadGraphics();
-	
+
 	}
 
-	void loadGraphics(){
+	void loadGraphics() {
 		graphics = new PImage[imageCount]; //set amount of images
 		for (int i = 0; i < imageCount; ++i) {
-			graphics[i] = loadImage("img/stone-0"+ (i+2) +".png");
+			graphics[i] = loadImage("img/stone-0" + (i + 2) + ".png");
 		}
-		// graphics[0] = loadImage("img/stone-02.png");
-		// graphics[1] = loadImage("img/stone-03.png");
-		// graphics[2] = loadImage("img/stone-04.png");
 	}
 
 	void update(ArrayList<PVector> targets) {
@@ -46,7 +43,7 @@ class LineHandler {
 
 		//draw mapping fields
 		noStroke();
-		
+
 		fill(255);
 		rectMode(CORNER);
 		rect(offset, offset, 2 * x_size + 2 * y_size, z_size);
@@ -70,28 +67,28 @@ class LineHandler {
 		noStroke();
 		rectMode(CENTER);
 		rect(offset + 3 * radius + offset, offset + z_size + offset + radius, x_size, y_size);
-	
-    //draw targets
-    pushMatrix();
-    translate(-ultimateOrigin.x, -ultimateOrigin.y);
-    translate(offset + radius, offset + z_size + offset + radius);
-    noStroke();
-    for (PVector v : allTargets){
-      noStroke();
-      fill(255,0,0);
-      ellipse(v.x,v.y,25,25);    
-    }
-    popMatrix();
-    
-    //draw stone pos
-    pushMatrix();
-    translate(-ultimateOrigin.x, -ultimateOrigin.y);
-    translate(offset + 3 * radius + offset, offset + z_size + offset + radius);
-    fill(0,255,0);
-    ellipse(stoneOrigin.x,stoneOrigin.y,25,25);  
-    popMatrix();
 
-}
+		//draw targets
+		pushMatrix();
+		translate(-ultimateOrigin.x, -ultimateOrigin.y);
+		translate(offset + radius, offset + z_size + offset + radius);
+		noStroke();
+		for (PVector v : allTargets) {
+			noStroke();
+			fill(255, 0, 0);
+			ellipse(v.x, v.y, 25, 25);
+		}
+		popMatrix();
+
+		//draw stone pos
+		pushMatrix();
+		translate(-ultimateOrigin.x, -ultimateOrigin.y);
+		translate(offset + 3 * radius + offset, offset + z_size + offset + radius);
+		fill(0, 255, 0);
+		ellipse(stoneOrigin.x, stoneOrigin.y, 25, 25);
+		popMatrix();
+
+	}
 
 	void removeEmptyLines() {
 		//check all lines
@@ -138,16 +135,16 @@ class LineHandler {
 
 	void updateLineTargets() {
 		//if more or less targets then before, reassign targets
-		
+
 		// if (targetAmount != allTargets.size()) {
 		// 	targetAmount = allTargets.size();
 
-			//if more targets, create new line, else reassign
-			if (allTargets.size() > allLines.size()) {
-				addLine();
-			} else {
-				reAssignTargets();
-			}
+		//if more targets, create new line, else reassign
+		if (allTargets.size() > allLines.size()) {
+			addLine();
+		} else {
+			reAssignTargets();
+		}
 		// }
 	}
 
