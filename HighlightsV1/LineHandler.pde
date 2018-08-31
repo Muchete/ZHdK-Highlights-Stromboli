@@ -52,9 +52,9 @@ class LineHandler {
 		rect(offset, offset, 2 * x_size + 2 * y_size, z_size);
 
 		stroke(0);
-		line(offset + y_size, offset, offset + y_size, offset + z_size);
-		line(offset + y_size + x_size, offset, offset + y_size + x_size, offset + z_size);
-		line(offset + y_size + x_size + y_size, offset, offset + y_size + x_size + y_size, offset + z_size);
+		//line(offset + y_size, offset, offset + y_size, offset + z_size);
+		//line(offset + y_size + x_size, offset, offset + y_size + x_size, offset + z_size);
+		//line(offset + y_size + x_size + y_size, offset, offset + y_size + x_size + y_size, offset + z_size);
 
 		ellipseMode(CORNER);
 		ellipse(offset, offset + z_size + offset, radius * 2, radius * 2);
