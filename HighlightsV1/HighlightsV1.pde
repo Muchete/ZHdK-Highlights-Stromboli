@@ -98,6 +98,8 @@ void draw() {
 
 	// println(allTargets);
 
+  soundHandler.update();
+
 	// background(255, 120);
 	lineHandler.update(allTargets);
 
