@@ -1,13 +1,13 @@
 class SoundHandler {
-	
+
 	//SETTINGS
 	String[] filenames = { "sample1.wav", "sample1.wav", "sample1.wav" };
-  float soundPeriod = 15; //in seconds
+	float soundPeriod = 15; //in seconds
 
 	//REQUIREMENTS
 	ArrayList<AudioPlayer> playerList = new ArrayList<AudioPlayer>();
-  boolean readyForSound = true;
-  int lastSound;
+	boolean readyForSound = true;
+	int lastSound;
 
 	SoundHandler () {
 		//load all samples defined above
@@ -16,31 +16,31 @@ class SoundHandler {
 		}
 	}
 
-	void loadSample(String name){
+	void loadSample(String name) {
 		AudioPlayer player;
 		player = m.loadFile("data/sounds/" + name);
 		playerList.add(player);
 		println("added Sample: " + name);
 	}
 
-	void update(){
-    if (millis() > lastSound + 1000 * soundPeriod){
-      readyForSound = true;
-    }
+	void update() {
+		if (millis() > lastSound + 1000 * soundPeriod) {
+			readyForSound = true;
+		}
 	}
 
-	void playRandom(){
-    if (readyForSound){
-  		int randomNo = int(random(filenames.length));
-  		println(randomNo);
-  		playerList.get(randomNo).rewind();
-  		playerList.get(randomNo).play();
-      readyForSound = false;
-      lastSound = millis();
-    }
+	void playRandom() {
+		if (readyForSound) {
+			int randomNo = int(random(filenames.length));
+			println(randomNo);
+			playerList.get(randomNo).rewind();
+			playerList.get(randomNo).play();
+			readyForSound = false;
+			lastSound = millis();
+		}
 	}
 
-	void pauseAll(){
+	void pauseAll() {
 		for (AudioPlayer p : playerList) {
 			p.pause();
 			p.rewind();
