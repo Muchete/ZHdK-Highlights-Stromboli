@@ -137,7 +137,6 @@ class BlobHandler {
 
 		for (Blob b : blobs) {
 			float distance = PVector.dist(b.getCenter(), center);
-<<<<<<< HEAD
 	        if (distance > inner && distance < outer) {
 	        	PVector mappedCoordinates = b.getCenter().copy();
 
@@ -164,34 +163,6 @@ class BlobHandler {
 	        }
 	    }
 	    return activeBlobs;
-=======
-			if (distance > inner && distance < outer) {
-				PVector mappedCoordinates = b.getCenter().copy();
-
-				mappedCoordinates.x = ((640 - mappedCoordinates.x) - center.x) / 200 * radius;
-				mappedCoordinates.y = ((480 - mappedCoordinates.y) - center.y) / 200 * radius;
-
-				if (mappedCoordinates.mag() > radius) {
-					mappedCoordinates = mappedCoordinates.normalize().mult(radius);
-				}
-
-				mappedCoordinates.add(ultimateOrigin);
-				mappedCoordinates.z = 0;
-
-				println("mappedCoordinates: " + mappedCoordinates);
-
-				//println("mappedCoordinates: "+mappedCoordinates);
-				//println("ultimateOrigin: "+ultimateOrigin);
-				println("radius: " + radius);
-				println("distance to ultimateOrigin: " + PVector.dist(mappedCoordinates, ultimateOrigin));
-
-				//mappedCoordinates = mappedCoordinates.div(420).mult(radius * 2);
-
-				activeBlobs.add(mappedCoordinates);
-			}
-		}
-		return activeBlobs;
->>>>>>> dc9cf25f2aaac38f642c7ed67597686cc8736f42
 	}
 
 	//helper functions for color comparison
