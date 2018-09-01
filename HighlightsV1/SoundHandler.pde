@@ -1,7 +1,7 @@
 class SoundHandler {
 
 	//SETTINGS
-	String[] filenames = { "sample1.2.wav", "sample1.2.wav", "sample1.2.wav" };
+	String[] filenames = { "sample3.wav", "sample4.wav", "sample6.wav", "sample7.wav", "sample8.wav" };
   float soundPeriod = 15; //in seconds
 
 	//REQUIREMENTS
