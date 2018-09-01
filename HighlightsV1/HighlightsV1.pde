@@ -93,7 +93,7 @@ void draw() {
 	blobHandler.update(result);
 	allTargets = blobHandler.activeBlobs(centerPoint, 0, 250);
 
-	println(allTargets);
+	// println(allTargets);
 
 	// background(255, 120);
 	lineHandler.update(allTargets);

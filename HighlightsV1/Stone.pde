@@ -20,8 +20,10 @@ class Stone {
 	boolean omegaDead = false;
 	int deathTime = 0;
 	int imgNo;
-	int[] stages = {1, 3, 6};
+	int[] stages = {0, 2, 5};
+	int stage = 0;
 	float spreadness = 30;
+	float[] randomSpreadCoordonates = new float[stages.length * 2];
 	float _mag;
 	PVector _origin, _target, _tempTarget, _futureOrigin, _step, _centerPoint;
 	boolean _fixed = false;
@@ -43,6 +45,17 @@ class Stone {
 		bottomBorder = ultimateOrigin.y + y_size / 2;
 
 		setCurrentAxisblock();
+
+		setRandomNumbers();
+		setStage();
+	}
+
+	void setRandomNumbers(){
+		// float dist = PVector.dist(ultimateOrigin.x, ultimateOrigin.y, ultimateOrigin.z, _origin.x, _origin.y, _origin.z);
+		for (int i = 0; i < stages.length; ++i) {
+			randomSpreadCoordonates[i] = random(-spreadness, spreadness);
+			randomSpreadCoordonates[i + stages.length] = random(-spreadness, spreadness);
+		}
 	}
 
 	void setCurrentAxisblock() {
@@ -61,12 +74,23 @@ class Stone {
 		}
 	}
 
+	void setStage(){
+		if (_origin.z == z_size){
+			stage = 0;
+		} else if (_origin.z == 0){
+			stage = 2;
+		} else if (_origin.x == leftBorder || _origin.x == rightBorder || _origin.y == topBorder || _origin.y == bottomBorder){
+			stage = 1;
+		} else {
+			println("ERROR! couldnt set stage!");
+		}
+	}
+
 	void setTarget(PVector targ) {
 
 		_tempTarget = targ.copy();
 
 		//sets target to zsize if on table
-
 		if (!targetOnTableCheck()) {
 			//SPAGHETTI CODE IS HERE:
 			_tempTarget.z = -100;
@@ -395,12 +419,16 @@ class Stone {
 	}
 
 	void drawThingy(float x, float y, float size) {
-
 		imageMode(CENTER);
 		tint(255, _alpha);
 		translate(x, y);
 		rotate(-atan2(_target.x - _origin.x, _target.y - _origin.y));
 		image(graphics[imgNo], 0, 0, size, size);
+
+
+		for (int i = 0; i < stages[stage]; ++i) {
+			image(graphics[imgNo], randomSpreadCoordonates[stage], randomSpreadCoordonates[stage + stages.length], size, size);
+		}
 
 	}
 
