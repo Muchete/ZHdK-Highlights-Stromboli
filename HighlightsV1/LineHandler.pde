@@ -70,6 +70,7 @@ class LineHandler {
 
 
 		if (debugMode){
+      ellipseMode(CENTER);
 			//draw targets
 			pushMatrix();
 			translate(-ultimateOrigin.x, -ultimateOrigin.y);
