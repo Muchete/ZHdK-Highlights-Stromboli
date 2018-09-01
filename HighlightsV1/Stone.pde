@@ -20,9 +20,9 @@ class Stone {
 	boolean omegaDead = false;
 	int deathTime = 0;
 	int imgNo;
-	int[] stages = {0, 2, 5};
+	int[] stages = {1, 6, 15};
 	int stage = 0;
-	float spreadness = 30;
+	float spreadness = 22;
 	float[] randomSpreadCoordonates = new float[stages.length * 2];
 	float _mag;
 	PVector _origin, _target, _tempTarget, _futureOrigin, _step, _centerPoint;
@@ -427,6 +427,7 @@ class Stone {
 
 
 		for (int i = 0; i < stages[stage]; ++i) {
+      tint(255, _alpha);
 			image(graphics[imgNo], randomSpreadCoordonates[stage], randomSpreadCoordonates[stage + stages.length], size, size);
 		}
 
