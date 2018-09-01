@@ -50,7 +50,7 @@ class Stone {
 		setStage();
 	}
 
-	void setRandomNumbers(){
+	void setRandomNumbers() {
 		// float dist = PVector.dist(ultimateOrigin.x, ultimateOrigin.y, ultimateOrigin.z, _origin.x, _origin.y, _origin.z);
 		for (int i = 0; i < stages.length; ++i) {
 			randomSpreadCoordonates[i] = random(-spreadness, spreadness);
@@ -74,12 +74,12 @@ class Stone {
 		}
 	}
 
-	void setStage(){
-		if (_origin.z == z_size){
+	void setStage() {
+		if (_origin.z == z_size) {
 			stage = 0;
-		} else if (_origin.z == 0){
+		} else if (_origin.z == 0) {
 			stage = 2;
-		} else if (_origin.x == leftBorder || _origin.x == rightBorder || _origin.y == topBorder || _origin.y == bottomBorder){
+		} else if (_origin.x == leftBorder || _origin.x == rightBorder || _origin.y == topBorder || _origin.y == bottomBorder) {
 			stage = 1;
 		} else {
 			println("ERROR! couldnt set stage!");
@@ -427,7 +427,7 @@ class Stone {
 
 
 		for (int i = 0; i < stages[stage]; ++i) {
-      tint(255, _alpha);
+			tint(255, _alpha);
 			image(graphics[imgNo], randomSpreadCoordonates[stage], randomSpreadCoordonates[stage + stages.length], size, size);
 		}
 

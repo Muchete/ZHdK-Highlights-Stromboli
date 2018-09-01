@@ -69,8 +69,8 @@ class LineHandler {
 		rect(offset + 3 * radius + offset, offset + z_size + offset + radius, x_size, y_size);
 
 
-		if (debugMode){
-      ellipseMode(CENTER);
+		if (debugMode) {
+			ellipseMode(CENTER);
 			//draw targets
 			pushMatrix();
 			translate(-ultimateOrigin.x, -ultimateOrigin.y);
@@ -140,11 +140,13 @@ class LineHandler {
 		//if more or less targets then before, reassign targets
 
 		if (targetAmount > allTargets.size()) {
-		  targetAmount = allTargets.size();
-    } else if (targetAmount < allTargets.size()){
-      targetAmount = allTargets.size();
-      soundHandler.playRandom();
-    }
+			targetAmount = allTargets.size();
+		} else if (targetAmount < allTargets.size()) {
+			targetAmount = allTargets.size();
+			
+			//play sound sample:
+			soundHandler.playRandom();
+		}
 
 		//if more targets, create new line, else reassign
 		if (allTargets.size() > allLines.size()) {

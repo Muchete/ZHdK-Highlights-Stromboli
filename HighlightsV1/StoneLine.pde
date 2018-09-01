@@ -62,7 +62,7 @@ class StoneLine {
 			// 	aStone.drawMapping(_myTarget);
 			// }
 
-			for (int i = stoneList.size()-1; i >= 0; --i) {
+			for (int i = stoneList.size() - 1; i >= 0; --i) {
 				stoneList.get(i).drawMapping(_myTarget);
 			}
 

@@ -3,7 +3,7 @@ import ddf.minim.*;
 import org.openkinect.processing.*;
 
 //DEBUGGING:
-boolean debugMode = true;
+boolean debugMode = false;
 
 //VISITOR DETECTION
 Kinect kinect;
