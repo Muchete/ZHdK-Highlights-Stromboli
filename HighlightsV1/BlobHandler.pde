@@ -140,8 +140,8 @@ class BlobHandler {
 	        if (distance > inner && distance < outer) {
 	        	PVector mappedCoordinates = b.getCenter().copy();
 
-	        	mappedCoordinates.x = (640 - mappedCoordinates.x) - center.x + ultimateOrigin.x / 2 + 100;
-	        	mappedCoordinates.y = (480 - mappedCoordinates.y) - center.y + ultimateOrigin.y / 2 - 100;
+	        	mappedCoordinates.x = (640 - mappedCoordinates.x) - center.x + ultimateOrigin.x / 2 + 30;
+	        	mappedCoordinates.y = (480 - mappedCoordinates.y) - center.y + ultimateOrigin.y / 2 + 45;
 
 	        	mappedCoordinates = mappedCoordinates.div(420).mult(radius * 2);
 
