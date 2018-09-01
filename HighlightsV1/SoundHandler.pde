@@ -1,7 +1,7 @@
 class SoundHandler {
 	
 	//SETTINGS
-	String[] filenames = { "sample1.wav", "sample1.wav", "sample1.wav" };
+	String[] filenames = { "sample1.2.wav", "sample1.2.wav", "sample1.2.wav" };
   float soundPeriod = 15; //in seconds
 
 	//REQUIREMENTS
@@ -31,8 +31,8 @@ class SoundHandler {
 
 	void playRandom(){
     if (readyForSound){
+      println("played sound");
   		int randomNo = int(random(filenames.length));
-  		println(randomNo);
   		playerList.get(randomNo).rewind();
   		playerList.get(randomNo).play();
       readyForSound = false;

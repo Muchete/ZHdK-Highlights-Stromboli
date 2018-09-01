@@ -150,12 +150,12 @@ class BlobHandler {
             mappedCoordinates.add(ultimateOrigin);
             mappedCoordinates.z = 0;
 
-            println("mappedCoordinates: "+mappedCoordinates);
+            //println("mappedCoordinates: "+mappedCoordinates);
 
 	        	//println("mappedCoordinates: "+mappedCoordinates);
             //println("ultimateOrigin: "+ultimateOrigin);
-	        	println("radius: "+radius);
-	        	println("distance to ultimateOrigin: " + PVector.dist(mappedCoordinates, ultimateOrigin));
+	        	//println("radius: "+radius);
+	        	//println("distance to ultimateOrigin: " + PVector.dist(mappedCoordinates, ultimateOrigin));
 
 	        	//mappedCoordinates = mappedCoordinates.div(420).mult(radius * 2);
 
