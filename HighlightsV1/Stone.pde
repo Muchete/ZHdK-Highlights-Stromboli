@@ -7,7 +7,7 @@ class Stone {
 	float overlapFactor = 2;
 	float fadeTime = 5; //time for fading in seconds
 
-	float _alpha = 255;
+	float _alpha = 0;
 	float birth;
 
 	//TABLE SETTINGS:
@@ -20,6 +20,10 @@ class Stone {
 	boolean omegaDead = false;
 	int deathTime = 0;
 	int imgNo;
+	int[] stages = {0, 2, 5};
+	int stage = 0;
+	float spreadness = 30;
+	float[] randomSpreadCoordonates = new float[stages.length * 2];
 	float _mag;
 	PVector _origin, _target, _tempTarget, _futureOrigin, _step, _centerPoint;
 	boolean _fixed = false;
@@ -35,13 +39,23 @@ class Stone {
 		_randomness = random(-_randomness, _randomness);
 		_stepMaximum = random(_stepMinimum, _stepMaximum);
 
-
 		leftBorder = ultimateOrigin.x - x_size / 2;
 		rightBorder = ultimateOrigin.x + x_size / 2;
 		topBorder = ultimateOrigin.y - y_size / 2;
 		bottomBorder = ultimateOrigin.y + y_size / 2;
 
 		setCurrentAxisblock();
+
+		setRandomNumbers();
+		setStage();
+	}
+
+	void setRandomNumbers(){
+		// float dist = PVector.dist(ultimateOrigin.x, ultimateOrigin.y, ultimateOrigin.z, _origin.x, _origin.y, _origin.z);
+		for (int i = 0; i < stages.length; ++i) {
+			randomSpreadCoordonates[i] = random(-spreadness, spreadness);
+			randomSpreadCoordonates[i + stages.length] = random(-spreadness, spreadness);
+		}
 	}
 
 	void setCurrentAxisblock() {
@@ -60,13 +74,24 @@ class Stone {
 		}
 	}
 
+	void setStage(){
+		if (_origin.z == z_size){
+			stage = 0;
+		} else if (_origin.z == 0){
+			stage = 2;
+		} else if (_origin.x == leftBorder || _origin.x == rightBorder || _origin.y == topBorder || _origin.y == bottomBorder){
+			stage = 1;
+		} else {
+			println("ERROR! couldnt set stage!");
+		}
+	}
+
 	void setTarget(PVector targ) {
 
 		_tempTarget = targ.copy();
 
 		//sets target to zsize if on table
-		
-		if (!targetOnTableCheck()){
+		if (!targetOnTableCheck()) {
 			//SPAGHETTI CODE IS HERE:
 			_tempTarget.z = -100;
 		}
@@ -89,8 +114,15 @@ class Stone {
 		targetIsSet = true;
 	}
 
-	boolean targetOnTableCheck(){
-		if (_tempTarget.x > leftBorder && rightBorder > _tempTarget.x && _tempTarget.y > topBorder && bottomBorder > _tempTarget.y){
+	// void setSpread(PVector v){
+	// 	float dist;
+	// 	dist = PVector.dist(v.x, v.y, 0, _origin.x, _origin.y, _origin.z);
+
+
+	// }
+
+	boolean targetOnTableCheck() {
+		if (_tempTarget.x > leftBorder && rightBorder > _tempTarget.x && _tempTarget.y > topBorder && bottomBorder > _tempTarget.y) {
 			_tempTarget.z = z_size;
 			return true;
 		} else {
@@ -100,23 +132,23 @@ class Stone {
 
 	void collisionDetection() {
 
-	// println("----------------");
-	// println("_origin: " + _origin);
-	// println("_tempTarget: "+_tempTarget);
-	// println("_target: " + _target);
+		// println("----------------");
+		// println("_origin: " + _origin);
+		// println("_tempTarget: "+_tempTarget);
+		// println("_target: " + _target);
 
 		switch (axisBlock) {
 		case 0:
 			//if in x block
-			if (_origin.x == leftBorder){
+			if (_origin.x == leftBorder) {
 				//if on surface 2
-				if (_target.z > z_size){
+				if (_target.z > z_size) {
 					float dif = abs(_target.z - z_size);
 
 					_target.z = z_size;
 					_futureOrigin.z = z_size;
 					_futureOrigin.x = _futureOrigin.x + dif;
-				} else if (_target.z < 0){
+				} else if (_target.z < 0) {
 					float dif = abs(_target.z - 0);
 
 					_target.z = 0;
@@ -130,7 +162,7 @@ class Stone {
 					_target.y = bottomBorder;
 					_futureOrigin.y = bottomBorder;
 					_futureOrigin.x = _futureOrigin.x + dif;
-				} else if (_target.y < topBorder){
+				} else if (_target.y < topBorder) {
 					float dif = abs(topBorder - _target.y);
 
 					_target.y = topBorder;
@@ -138,15 +170,15 @@ class Stone {
 					_futureOrigin.x = _futureOrigin.x - dif;
 				}
 
-			} else if (_origin.x == rightBorder){
+			} else if (_origin.x == rightBorder) {
 				//if on surface 4
-				if (_target.z > z_size){
+				if (_target.z > z_size) {
 					float dif = abs(_target.z - z_size);
 
 					_target.z = z_size;
 					_futureOrigin.z = z_size;
 					_futureOrigin.x = _futureOrigin.x - dif;
-				} else if (_target.z < 0){
+				} else if (_target.z < 0) {
 					float dif = abs(_target.z - 0);
 
 					_target.z = 0;
@@ -160,7 +192,7 @@ class Stone {
 					_target.y = bottomBorder;
 					_futureOrigin.y = bottomBorder;
 					_futureOrigin.x = _futureOrigin.x - dif;
-				} else if (_target.y < topBorder){
+				} else if (_target.y < topBorder) {
 					float dif = abs(topBorder - _target.y);
 
 					_target.y = topBorder;
@@ -171,15 +203,15 @@ class Stone {
 			break;
 		case 1:
 			//if in y block
-			if (_origin.y == topBorder){
+			if (_origin.y == topBorder) {
 				//if on surface 3
-				if (_target.z > z_size){
+				if (_target.z > z_size) {
 					float dif = abs(_target.z - z_size);
 
 					_target.z = z_size;
 					_futureOrigin.z = z_size;
 					_futureOrigin.y = _futureOrigin.y + dif;
-				} else if (_target.z < 0){
+				} else if (_target.z < 0) {
 					float dif = abs(_target.z - 0);
 
 					_target.z = 0;
@@ -187,28 +219,28 @@ class Stone {
 					_futureOrigin.y = _futureOrigin.y - dif;
 				}
 
-				if (_target.x < leftBorder){
+				if (_target.x < leftBorder) {
 					float dif = abs(_target.x - leftBorder);
 
 					_target.x = leftBorder;
 					_futureOrigin.x = leftBorder;
 					_futureOrigin.y = _futureOrigin.y + dif;
-				} else if (_target.x > rightBorder){
+				} else if (_target.x > rightBorder) {
 					float dif = abs(_target.x - rightBorder);
 
 					_target.x = rightBorder;
 					_futureOrigin.x = rightBorder;
 					_futureOrigin.y = _futureOrigin.y + dif;
 				}
-			} else if (_origin.y == bottomBorder){
+			} else if (_origin.y == bottomBorder) {
 				//if on surface 1
-				if (_target.z > z_size){
+				if (_target.z > z_size) {
 					float dif = abs(_target.z - z_size);
 
 					_target.z = z_size;
 					_futureOrigin.z = z_size;
 					_futureOrigin.y = _futureOrigin.y - dif;
-				} else if (_target.z < 0){
+				} else if (_target.z < 0) {
 					float dif = abs(_target.z - 0);
 
 					_target.z = 0;
@@ -216,13 +248,13 @@ class Stone {
 					_futureOrigin.y = _futureOrigin.y + dif;
 				}
 
-				if (_target.x < leftBorder){
+				if (_target.x < leftBorder) {
 					float dif = abs(_target.x - leftBorder);
 
 					_target.x = leftBorder;
 					_futureOrigin.x = leftBorder;
 					_futureOrigin.y = _futureOrigin.y - dif;
-				} else if (_target.x > rightBorder){
+				} else if (_target.x > rightBorder) {
 					float dif = abs(_target.x - rightBorder);
 
 					_target.x = rightBorder;
@@ -268,7 +300,7 @@ class Stone {
 			} else if (_origin.z == 0) {
 				//if on floor
 				if (leftBorder < _target.x && _target.x < rightBorder) {
-						//vertical breach
+					//vertical breach
 					if (_origin.y < topBorder && topBorder < _target.y) {
 						float dif = abs(topBorder - _target.y);
 
@@ -286,15 +318,15 @@ class Stone {
 			}
 			break;
 		}
-	// println("_futureOrigin: " + _futureOrigin);
-	// println("----------------");
+		// println("_futureOrigin: " + _futureOrigin);
+		// println("----------------");
 	}
 
 	PVector rotateRandom(PVector v) {
 
 		if (axisBlock == 2) {
 			v.rotate(radians(_randomness));
-		} else if (axisBlock == 1){
+		} else if (axisBlock == 1) {
 			v = rotateAroundY(v, radians(_randomness));
 		} else if (axisBlock == 0) {
 			v = rotateAroundX(v, radians(_randomness));
@@ -303,7 +335,7 @@ class Stone {
 		return v;
 	}
 
-	PVector rotateAroundX(PVector v, float theta){
+	PVector rotateAroundX(PVector v, float theta) {
 		float temp = v.y;
 
 		v.y = v.y * cos(theta) - v.z * sin(theta);
@@ -311,7 +343,7 @@ class Stone {
 		return v;
 	}
 
-	PVector rotateAroundY(PVector v, float theta){
+	PVector rotateAroundY(PVector v, float theta) {
 		float temp = v.x;
 
 		v.x = v.x * cos(theta) + v.z * sin(theta);
@@ -339,33 +371,33 @@ class Stone {
 		_fixed = true;
 	}
 
-	void setAlpha(){
+	void setAlpha() {
 
-		if (!dead){
+		if (!dead) {
 			//fade until alpha is 255
-			_alpha = map((millis() - birth)/1000,0,fadeTime,0,255);
+			_alpha = map((millis() - birth) / 1000, 0, fadeTime, 0, 255);
 
 			if (_alpha > 222) {
 				_alpha = 255;
 			}
 		} else {
-			if (deathTime == 0){
+			if (deathTime == 0) {
 				deathTime = millis();
 			}
 
-			if (_alpha > 0){
+			if (_alpha > 0) {
 
-				_alpha = map((millis() - deathTime)/1000,0,fadeTime,255,0);
+				_alpha = map((millis() - deathTime) / 1000, 0, fadeTime, 255, 0);
 
 				// if (_alpha > map((millis() - deathTime)/1000,0,fadeTime,255,0)){
-				
+
 				// }
 
 			} else {
 				omegaDead = true;
 			}
-			
-			if (_alpha == 0){
+
+			if (_alpha == 0) {
 				omegaDead = true;
 			}
 		}
@@ -386,13 +418,17 @@ class Stone {
 		}
 	}
 
-	void drawThingy(float x, float y, float size){
-
+	void drawThingy(float x, float y, float size) {
 		imageMode(CENTER);
-		tint(255,_alpha);
+		tint(255, _alpha);
 		translate(x, y);
 		rotate(-atan2(_target.x - _origin.x, _target.y - _origin.y));
 		image(graphics[imgNo], 0, 0, size, size);
+
+
+		for (int i = 0; i < stages[stage]; ++i) {
+			image(graphics[imgNo], randomSpreadCoordonates[stage], randomSpreadCoordonates[stage + stages.length], size, size);
+		}
 
 	}
 
@@ -468,10 +504,10 @@ class Stone {
 
 				// ellipseMode(CENTER);
 				// ellipse(y_size - _centerPoint.y + topBorder, z_size - _centerPoint.z, _mag, _mag);
-				popMatrix();	
+				popMatrix();
 			}
 
-			if (_origin.y == topBorder ||_futureOrigin.y == topBorder) {
+			if (_origin.y == topBorder || _futureOrigin.y == topBorder) {
 				pushMatrix();
 				translate(offset + y_size + x_size + y_size, offset);
 				noStroke();
@@ -480,7 +516,7 @@ class Stone {
 
 				// ellipseMode(CENTER);
 				// ellipse(x_size - _centerPoint.x + leftBorder, z_size - _centerPoint.z, _mag, _mag);
-				popMatrix();	
+				popMatrix();
 			}
 
 			if (_origin.y == bottomBorder || _futureOrigin.y == bottomBorder) {
@@ -492,7 +528,7 @@ class Stone {
 
 				// ellipseMode(CENTER);
 				// ellipse(_centerPoint.x - leftBorder, z_size - _centerPoint.z, _mag, _mag);
-				popMatrix();	
+				popMatrix();
 			}
 		}
 	}

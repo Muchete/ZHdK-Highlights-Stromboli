@@ -1,7 +1,8 @@
 class StoneLine {
 
 	//SETTINGS:
-	float intervall = 0.2; //draw stone every X seconds
+	float intervallMinimum = 0.1; //draw stone every X seconds
+	float randomFactor = 8; //max Factor
 	float targetTolerance = 5;
 
 	//REQUIREMENTS
@@ -31,7 +32,7 @@ class StoneLine {
 		}
 
 		//generate new stone every <intervall> seconds
-		if (millis() > lastTime + intervall * 1000) {
+		if (millis() > lastTime + intervallMinimum * random(1, randomFactor) * 1000) {
 			lastTime = millis();
 			if (active) {
 				newStone();

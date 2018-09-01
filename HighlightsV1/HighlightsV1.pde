@@ -16,11 +16,6 @@ PVector centerPoint;
 //COMMUNICATION WITH RESOLUME
 SyphonServer server;
 
-//SETTINGS:
-PVector stoneOrigin = new PVector(403,510); //physical stone position
-PVector ultimateOrigin = new PVector(500, 500); //physical TABLE positon
-int imageCount = 9;
-
 //REQUIREMENTS:
 LineHandler lineHandler;
 Minim m = new Minim (this);
@@ -35,6 +30,10 @@ float y_size = 96 * factor; //48cm
 float z_size = 115 * factor; //57.5cm
 float radius = 200 * factor;
 
+PVector stoneOrigin = new PVector(403, 510); //physical stone position
+PVector ultimateOrigin = new PVector(500, 500); //physical TABLE positon
+int imageCount = 9;
+
 //2D SCENE PARAMETERS
 int offset = 20; // defines the space between the mapping fields
 
@@ -45,11 +44,11 @@ void setup() {
 
 	//init kinect v1
 	kinect = new Kinect(this);
-    kinect.initDepth();
+	kinect.initDepth();
 
-    //create blobHandler
-    blobHandler = new BlobHandler();
-    centerPoint = new PVector(320, 240);
+	//create blobHandler
+	blobHandler = new BlobHandler();
+	centerPoint = new PVector(320, 240);
 
 	//create syphon server for sending the screen to resolume
 	server = new SyphonServer(this, "Processing");
@@ -71,33 +70,31 @@ void draw() {
 
 	//image handling for the blob detection
 	PImage img = kinect.getDepthImage();
-    PImage result = new PImage(640, 480);
-    int[] depthMap = kinect.getRawDepth();
+	PImage result = new PImage(640, 480);
+	int[] depthMap = kinect.getRawDepth();
 
-    result.loadPixels();
+	result.loadPixels();
 
-    for (int x = 0; x < 640; x++) {
-        for (int y = 0; y < 480; y++) {
-            int loc = x+ y * 640;
-            int rawDepth = depthMap[loc];
-            
-            if (rawDepth > lowerThreshold && rawDepth < upperThreshold) {
-                result.pixels[loc] = blobHandler.trackColor;
-            } else {
-                result.pixels[loc] = img.pixels[loc];
-            }
-        }
-    }
+	for (int x = 0; x < 640; x++) {
+		for (int y = 0; y < 480; y++) {
+			int loc = x + y * 640;
+			int rawDepth = depthMap[loc];
 
-    result.updatePixels();
+			if (rawDepth > lowerThreshold && rawDepth < upperThreshold) {
+				result.pixels[loc] = blobHandler.trackColor;
+			} else {
+				result.pixels[loc] = img.pixels[loc];
+			}
+		}
+	}
 
-    
+	result.updatePixels();
 
-    blobHandler.update(result);
-    allTargets = blobHandler.activeBlobs(centerPoint, 0, 250);
-    
-    println(allTargets);
-    
+	blobHandler.update(result);
+	allTargets = blobHandler.activeBlobs(centerPoint, 0, 250);
+
+	// println(allTargets);
+
 	// background(255, 120);
 	lineHandler.update(allTargets);
 
@@ -105,7 +102,7 @@ void draw() {
 	// 	allTargets.get(0).set(mouseX, mouseY, 0);
 	// }
 
-  //image(result, 0, 0);
+	//image(result, 0, 0);
 
 	server.sendScreen();
 }
@@ -125,5 +122,5 @@ void draw() {
 // 	}
 // 	println("removed Target!");
 // 	println("allTargets: "+allTargets);
-	
+
 // }
