@@ -68,26 +68,28 @@ class LineHandler {
 		rectMode(CENTER);
 		rect(offset + 3 * radius + offset, offset + z_size + offset + radius, x_size, y_size);
 
-		//draw targets
-		pushMatrix();
-		translate(-ultimateOrigin.x, -ultimateOrigin.y);
-		translate(offset + radius, offset + z_size + offset + radius);
-		noStroke();
-		for (PVector v : allTargets) {
+
+		if (debugMode){
+			//draw targets
+			pushMatrix();
+			translate(-ultimateOrigin.x, -ultimateOrigin.y);
+			translate(offset + radius, offset + z_size + offset + radius);
 			noStroke();
-			fill(255, 0, 0);
-			ellipse(v.x, v.y, 25, 25);
+			for (PVector v : allTargets) {
+				noStroke();
+				fill(255, 0, 0);
+				ellipse(v.x, v.y, 25, 25);
+			}
+			popMatrix();
+
+			//draw stone pos
+			pushMatrix();
+			translate(-ultimateOrigin.x, -ultimateOrigin.y);
+			translate(offset + 3 * radius + offset, offset + z_size + offset + radius);
+			fill(0, 255, 0);
+			ellipse(stoneOrigin.x, stoneOrigin.y, 25, 25);
+			popMatrix();
 		}
-		popMatrix();
-
-		//draw stone pos
-		pushMatrix();
-		translate(-ultimateOrigin.x, -ultimateOrigin.y);
-		translate(offset + 3 * radius + offset, offset + z_size + offset + radius);
-		fill(0, 255, 0);
-		ellipse(stoneOrigin.x, stoneOrigin.y, 25, 25);
-		popMatrix();
-
 	}
 
 	void removeEmptyLines() {

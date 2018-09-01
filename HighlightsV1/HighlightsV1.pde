@@ -2,6 +2,9 @@ import codeanticode.syphon.*;
 import ddf.minim.*;
 import org.openkinect.processing.*;
 
+//DEBUGGING:
+boolean debugMode = true;
+
 //VISITOR DETECTION
 Kinect kinect;
 BlobHandler blobHandler;
