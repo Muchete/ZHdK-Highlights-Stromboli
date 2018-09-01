@@ -54,18 +54,20 @@ void draw() {
     image(result, 0, 0);
 
     blobHandler.update(result);
-    allTargets = blobHandler.activeBlobs(centerPoint, 100, 150);
+    allTargets = blobHandler.activeBlobs(centerPoint, 100, 250);
     
     println(allTargets);
 
-    for (Blob b : blobHandler.blobs) {
-        b.show();
+    for (PVector b : allTargets) {
+        fill(0,0,255);
+        ellipse(b.x, b.y, 20, 20);
     } 
 
 
     stroke(0, 255, 0);
-    noFill(); 
-    ellipse(centerPoint.x, centerPoint.y, 150, 150);
+    noFill();
+    ellipse(centerPoint.x, centerPoint.y, 200, 200);
+    ellipse(centerPoint.x, centerPoint.y, 500, 500);
 
 }
 
