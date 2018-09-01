@@ -91,7 +91,7 @@ void draw() {
 	result.updatePixels();
 
 	blobHandler.update(result);
-	allTargets = blobHandler.activeBlobs(centerPoint, 0, 250);
+	allTargets = blobHandler.activeBlobs(centerPoint, 100, radius);
 
 	// println(allTargets);
 
