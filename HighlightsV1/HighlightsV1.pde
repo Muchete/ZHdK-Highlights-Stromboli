@@ -33,7 +33,7 @@ float y_size = 96 * factor; //48cm
 float z_size = 115 * factor; //57.5cm
 float radius = 200 * factor;
 
-PVector stoneOrigin = new PVector(403, 510); //physical stone position
+PVector stoneOrigin = new PVector(420, 523); //physical stone position
 PVector ultimateOrigin = new PVector(500, 500); //physical TABLE positon
 int imageCount = 9;
 
@@ -94,7 +94,7 @@ void draw() {
 	result.updatePixels();
 
 	blobHandler.update(result);
-	allTargets = blobHandler.activeBlobs(centerPoint, 0, 300);
+	allTargets = blobHandler.activeBlobs(centerPoint, 0, 250);
 
 	// println(allTargets);
 

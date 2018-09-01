@@ -4,7 +4,7 @@ class BlobHandler {
 	int blobCounter = 0;
 
 	int maxLife = 50;
-  int minSize = 5000;
+  int minSize = 2000;
 
 	public float threshold = 40;
 	public float distThreshold = 50;
